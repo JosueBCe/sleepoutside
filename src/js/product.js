@@ -49,5 +49,3 @@ button.addEventListener("click", function() {
 document
   .getElementById("addToCart")
   .addEventListener("click", addToCartHandler);
-
-  

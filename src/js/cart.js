@@ -26,19 +26,4 @@ function cartItemTemplate(item) {
 }
 
 renderCartContents();
-
-//Display number of items in the cart to the backpack icon
-var totalQty = 5;
-var elementVar = document.getElementById("card-qty");
-elementVar.setAttribute("value", totalQty);
-let index = 0;
-
-
-while (index < elementVar.length) {
-  elementVar[index].setAttribute("value", totalQty);
-  index++
-}
-
-
-
-
+//how to add superscript number of items by click in the cart html to the backpack icon?
