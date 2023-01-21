@@ -1,7 +1,7 @@
 import { getLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
-  const cartItems = getLocalStorage("soCart");
+  const cartItems = getLocalStorage("soCart") || [];
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
 }
@@ -26,4 +26,3 @@ function cartItemTemplate(item) {
 }
 
 renderCartContents();
-//how to add superscript number of items by click in the cart html to the backpack icon?
