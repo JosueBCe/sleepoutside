@@ -109,7 +109,18 @@ button {
 .cart:hover svg {
   fill: gray;
 }
-
+.badge:after {
+  content: attr(value);
+  font-size: 12px;
+  color: #fff;
+  background: red;
+  border-radius: 50%;
+  padding: 0 5px;
+  position: relative;
+  left: -8px;
+  top: -10px;
+  opacity: 0.9;
+}
 /* End cart icon styles */
 
 .mission {

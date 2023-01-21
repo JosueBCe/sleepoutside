@@ -27,3 +27,18 @@ function cartItemTemplate(item) {
 
 renderCartContents();
 
+//how to display number of items in sup id in the cart to the backpack icon?
+var totalQty = 5;
+var elementVar = document.getElementById("card-qty");
+elementVar.setAttribute("value", totalQty);
+let index = 0;
+
+
+while (index < elementVar.length) {
+  elementVar[index].setAttribute("value", totalQty);
+  index++
+}
+
+
+
+
