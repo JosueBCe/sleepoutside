@@ -36,10 +36,6 @@ export default class ProductDetails {
       .addEventListener("click", this.addToCart.bind(this));
   }
   addToCart() {
-    // let Data = getLocalStorage("so-cart");
-    // Data.push(this.product);
-    // setLocalStorage("so-cart", Data);
-
     let Data = getLocalStorage("so-cart");
     if (Data) {
       let tent = 1;
