@@ -82,10 +82,12 @@ export async function loadHeaderFooter() {
 //Function to display the number of items in the Backpack Icon
 export function numberItems(key) {
   const cart = getLocalStorage(key) || [];
-
+  
   let total = 0;
   cart.forEach(item => total += item.quantity);
 
   let numTotal = document.querySelector(".numberCartItems");
-  numTotal.innerHTML = total;
+  if (!isNaN(total)) {
+    numTotal.innerHTML = total;
+  }
 }

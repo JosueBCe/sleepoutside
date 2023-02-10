@@ -113,11 +113,18 @@ button {
 }
 
 .numberCartItems {
-  color: red;
+  background-color: red;
   position: relative;
   top: 2px;
   right: 4%;
-  padding-top: 0%;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  padding-top: 5px;
 }
 
 span.rise-shake {
