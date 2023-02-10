@@ -6,6 +6,10 @@ function cartItemTemplate(item) {
     let discount = Math.abs(final_price - suggested_retail_price).toFixed(2)
     let quantity = Number(item.quantity)
     let total_discount = (discount * quantity).toFixed(2)
+
+    console.log("item", item)
+    console.log("image",item.Images.PrimarySmall)
+    
     const newItem = `<li class='cart-card divider'>
                       <a href='#' class='cart-card__image'>
                         <img
