@@ -1,13 +1,16 @@
 export function newsLetterTemplate(){
-  document.querySelector(".news-letter").innerHTML = `<div id="newsletter-signup">
-  <h2>Subscribe to Our Newsletter</h2>
-  <form>
-    <input type="text" placeholder="Name" id="name">
-    <input type="email" placeholder="Email" id="email">
-    <button type="submit" id="submit-button">Subscribe</button>
-  </form>
-  <div id="response"></div>
-</div>`
+  document.querySelector(".news-letter").innerHTML = 
+  `<div id="newsletter-signup">
+    <h2>Subscribe to Our Newsletter</h2>
+    <form>
+      <label for="name"></label>
+      <input type="text" placeholder="Name" id="name">
+      <label for="email"></label>
+      <input type="email" placeholder="Email" id="email">
+      <button type="submit" id="submit-button">Subscribe</button>
+    </form>
+    <div id="response"></div>
+  </div>`
 }
 
 export function responseToSubmission(event){
