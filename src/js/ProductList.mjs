@@ -37,6 +37,27 @@ export default class ProductListing {
       // Title
       document.querySelector("#nameCategory").textContent = this.category.charAt(0).toUpperCase() + this.category.slice(1);
 
+
+      document.getElementById("sortName")
+      .addEventListener("click", () => {
+        document.querySelector(".product-list").textContent = "";
+        list.sort((nameA, nameB) => { 
+          if(nameA.Name < nameB.Name) { return -1; }
+          if(nameA.Name > nameB.Name) { return 1; }
+          return 0;
+        })
+        this.renderList(list)
+      });
+
+      document.getElementById("sortPrice")
+      .addEventListener("click", () => {
+        document.querySelector(".product-list").textContent = "";
+        list.sort((priceA, priceB) => priceA.FinalPrice - priceB.FinalPrice
+        )
+        this.renderList(list)
+      });
+
+
       // render the list 
       this.renderList(list)
     }
