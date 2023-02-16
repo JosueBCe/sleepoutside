@@ -36,13 +36,12 @@ export default class CheckoutProcess {
     }
     displayOrderTotals() {
         // once the totals are all calculated display them in the order summary page
-        document.getElementById("shipping-estimate").innerHTML += `<strong>${this.shipping }<strong/>`
-        document.getElementById("tax").innerHTML += `<strong>${this.tax}<strong/>`
-        document.getElementById("order-total").innerHTML += `<strong>${this.orderTotal.toFixed(2)}<strong/>`
-    }
+            document.getElementById("shipping-estimate").innerHTML += `<strong>${this.shipping }<strong/>`
+            document.getElementById("tax").innerHTML += `<strong>${this.tax}<strong/>`
+            document.getElementById("order-total").innerHTML += `<strong>${this.orderTotal.toFixed(2)}<strong/>`
+        }
 
 }
-
 
 let check = new CheckoutProcess("so-cart", "#order-total")
 check.init()
