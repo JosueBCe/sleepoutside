@@ -7,6 +7,11 @@ function cartItemTemplate(item) {
     let quantity = Number(item.quantity)
     let total_discount = (discount * quantity).toFixed(2)
     let { Images, Name } = item
+    let total_price = Number(final_price * quantity).toFixed(2)
+
+    console.log("item", item)
+    console.log("image",item.Images.PrimarySmall)
+
     const newItem = `<li class='cart-card divider'>
                       <a href='#' class='cart-card__image'>
                       <img
@@ -26,9 +31,10 @@ function cartItemTemplate(item) {
                         <h2 class='card__name'>${item.Name}</h2>
                       </a>
                       <p class='cart-card__color'>${item.Colors[0].ColorName}</p>
-                      <p class='cart-card__quantity'>qty: ${item.quantity}</p>
+                      <p class='cart-card__quantity'>Quantity: ${item.quantity}</p>
+                      <p class='cart-card__price'>Unit Price: $${item.FinalPrice}</p>
+                      <p class='cart-card__price'>Total: $${total_price}</p>
                       <p class='saved'>Saved: $${total_discount}<p>
-                      <p class='cart-card__price'>$${item.FinalPrice}</p>
                     </li>
                     `;
     return newItem;
@@ -59,7 +65,7 @@ export default class ShoppingCart {
     }
 }
 
-function sumTotal(cart) {
+export function sumTotal(cart) {
   let total = 0;
   cart.forEach(item => total += (item.FinalPrice * item.quantity));
   return total;
