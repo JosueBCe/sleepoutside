@@ -2,6 +2,7 @@ import { sumTotal } from "./ShoppingCart.mjs";
 import { getLocalStorage } from "./utils.mjs";
 import { numberItems } from "./utils.mjs";
 import { calculateShippingCost } from "./utils.mjs";
+
 export default class CheckoutProcess {
     constructor(key, outputSelector) {
         this.key = key;

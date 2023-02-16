@@ -12,10 +12,15 @@
   <link rel="stylesheet" href="../css/style.css" />
 
   <script src="../js/CheckoutProcess.mjs" type="module"></script>
+  <script src="../js/cart.js" type="module"></script>
+
 </head>
 
 <body>
-  <div>
+  <header class="divider" id="main-header">
+    <span class="numberCartItems"></span>
+  </header>
+  <main class="divider">
   <h1>Sign Up</h1>
 	<form action="/registration" method="post" enctype="multipart/form-data">
     <fieldset>
@@ -38,7 +43,8 @@
 	</form>
   <p><a href="../../login/index.html">Already have an account? </a></p>
 
-</div>
+</main>
+<footer id="main-footer"></footer>
 
 </body>
 
