@@ -1,0 +1,12 @@
+[{"message": "This is only a test", 
+"background": "darkblue", 
+"color": "white"}]
+
+// {"msg":{"message": "This is only a test", 
+// "background": "darkblue", 
+// "color": "white"}
+// ,
+// "msg2":{"message": "This is only a test", 
+// "background": "darkblue", 
+// "color": "white"}
+// }

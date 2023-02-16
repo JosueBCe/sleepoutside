@@ -1,4 +1,5 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import Alert from "./Alert.js";
 
 function productDetailsTemplate(product) {
   let final_price = Number(product.FinalPrice)
@@ -20,8 +21,10 @@ function productDetailsTemplate(product) {
           ${product.DescriptionHtmlSimple}
           </p>
           <div class="product-detail__add">
-            <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
-          </div></section>`;
+            <button id="addToCart" data-id="${product.Id}">Add To Cart</button>
+            <div id="snackbar">Some text some message..</div>
+          </div>
+          </section>`;
 }
 
 export default class ProductDetails {
@@ -46,7 +49,9 @@ export default class ProductDetails {
     // Data.push(this.product);
     // setLocalStorage("so-cart", Data);
     document.querySelector(".rise-shake").style.animation = "jump-shaking 0.83s"
-
+    
+    myFunction()
+    
     let Data = getLocalStorage("so-cart");
     if (Data) {
       let tent = 1;
@@ -78,4 +83,21 @@ export default class ProductDetails {
       productDetailsTemplate(this.product)
     );
   }
+}
+
+async function myFunction() {
+  // Get the snackbar DIV
+  let div = document.querySelector("#snackbar");
+
+  // Add the "show" class to DIV
+  div.className = "show";
+
+  /* x.style.background =  data. background */
+  // After 3 seconds, remove the show class from DIV
+  setTimeout(function(){ div.className = div.className.replace("show", ""); }, 3000);
+  
+
+
+
+  console.log("testSnackBar")
 }
