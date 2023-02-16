@@ -1,5 +1,5 @@
-// const baseURL = "http://server-nodejs.cit.byui.edu:3000/";
-const baseURL = "https://wdd330-backend.onrender.com/";
+const baseURL = "http://server-nodejs.cit.byui.edu:3000/";
+// const baseURL = "https://wdd330-backend.onrender.com/";
 
 function convertToJson(res) {
   if (res.ok) {
@@ -9,12 +9,11 @@ function convertToJson(res) {
   }
 }
 
-export default class ProductData {
+export default class ExternalServices {
   // constructor(category) {
   //   // this.category = category;
   //   // this.path = `../json/${this.category}.json`;
    //}
-
 
   async getData(category) {
 
@@ -41,5 +40,19 @@ export default class ProductData {
 
     // const products = await this.getData();
     // return products.find((item) => item.Id === id);
+  }
+
+  async checkout(payload) {
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    }
+    // const response = await fetch(baseURL + "checkout/", options);
+    // const data = await convertToJson(response);
+    // return data.Result;
+    return await fetch(baseURL + "checkout/", options).then(convertToJson);
   }
 }
