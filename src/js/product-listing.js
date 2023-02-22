@@ -2,7 +2,7 @@ import ProductListing from "./ProductList.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 import { loadHeaderFooter, numberItems, getParam } from "./utils.mjs";
 import { logProductCard } from "./QuickLook.mjs";
-import {getCategoryFromUrl, getCategoryName} from "./breadcrumbs.js";
+import { getCategoryFromUrl, getCategoryName } from "./breadcrumb.js";
 
 getCategoryFromUrl();
 getCategoryName();
