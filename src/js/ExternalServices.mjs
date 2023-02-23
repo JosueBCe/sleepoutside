@@ -5,7 +5,8 @@ function convertToJson(res) {
   if (res.ok) {
     return res.json();
   } else {
-    throw new Error("Bad Response");
+    // throw new Error("Bad Response");
+    throw { name: "servicesError", message: res.json() };
   }
 }
 

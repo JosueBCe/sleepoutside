@@ -1,5 +1,5 @@
 import { sumTotal } from "./ShoppingCart.mjs";
-import { getLocalStorage, numberItems, calculateShippingCost } from "./utils.mjs";
+import { getLocalStorage, numberItems, calculateShippingCost, setLocalStorage, alertMessage, removeAllAlerts } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 // Takes a form element and returns an object where the key is the "name" of the form input.
@@ -79,8 +79,15 @@ export default class CheckoutProcess {
         try {
             const res = await services.checkout(json);
             console.log(res);
+            setLocalStorage("so-cart", []);
+            location.assign("/checkout/success.html");
         } catch (err) {
-        console.log(err);
+            // Get rid of any preexisting alerts.
+            removeAllAlerts();
+            for (let message in err.message) {
+                alertMessage(err.message[message]);
+            }
+            console.log(err);
         }
     }
 }
