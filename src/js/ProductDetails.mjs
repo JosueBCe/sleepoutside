@@ -1,4 +1,5 @@
 import { getLocalStorage, setLocalStorage, numberItems } from "./utils.mjs";
+import Alert from "./alert.js";
 
 function productDetailsTemplate(product) {
   let final_price = Number(product.FinalPrice)
@@ -20,8 +21,10 @@ function productDetailsTemplate(product) {
           ${product.DescriptionHtmlSimple}
           </p>
           <div class="product-detail__add">
-            <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
-          </div></section>`;
+            <button id="addToCart" data-id="${product.Id}">Add To Cart</button>
+            <div id="snackbar">1 item added to cart</div>
+          </div>
+          </section>`;
 }
 
 export default class ProductDetails {
@@ -45,8 +48,11 @@ export default class ProductDetails {
     
     numberItems("so-cart", ".numberCartItems");
     window.location.reload();
-
-    document.querySelector(".rise-shake").style.animation = "jump-shaking 0.83s"
+    
+    // The cart will shake to indicate something has been added to the cart
+    document.querySelector(".rise-shake").style.animation = "jump-shaking 0.100s"
+    
+    showSnackBar()
 
     let Data = getLocalStorage("so-cart");
     if (Data) {
@@ -78,4 +84,9 @@ export default class ProductDetails {
       productDetailsTemplate(this.product)
     );
   }
+}
+
+function showSnackBar() {
+  const alert = new Alert();
+  alert.fetchData();
 }
