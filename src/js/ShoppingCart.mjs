@@ -9,9 +9,6 @@ function cartItemTemplate(item) {
     let { Images, Name } = item
     let total_price = Number(final_price * quantity).toFixed(2)
 
-    console.log("item", item)
-    console.log("image",item.Images.PrimarySmall)
-
     const newItem = `<li class='cart-card divider'>
                       <a href='#' class='cart-card__image'>
                       <img

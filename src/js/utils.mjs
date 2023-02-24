@@ -111,7 +111,7 @@ export function deleteLocalStorageItem(key) {
   localStorage.removeItem(key);
 }
 
-export function alertMessage(message, scroll = true, duration = 9300) {
+export async function alertMessage(message, scroll = true, duration = 9300) {
   // create element to hold our alert
   const alert = document.createElement("div");
   // add a class to style the alert

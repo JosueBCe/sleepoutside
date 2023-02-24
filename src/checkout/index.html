@@ -6,70 +6,81 @@
   <title>Sleep Outside | Cedar Ridge Rimrock 2-person tent</title>
   <link rel="stylesheet" href="../css/style.css" />
   <script src="../js/checkout.js" type="module"></script>
-  <!-- <script src="../js/cart.js" type="module"></script> -->
 </head>
 
-<body>
-  <header class="divider" id="main-header">
-    <span class="numberCartItems"></span>
+<body class="bodyForm">
+  <header>
+    <h1 class="segment">Review &amp; Place your Order</h1>
   </header>
-  <main class="divider">
-  <div>
-    <h1>Review &amp; Place your Order</h1>
+  <main>
+  <div class="formContainer">
     <form name="checkout">
       <fieldset>
-        <legend>Shipping</legend>
-        <label for="fname">First Name:</label>
-        <input type="text" id="fname" name="fname" value="" required>
-        <br>
-        <label for="lname">Last Name:</label>
-        <input type="text" id="lname" name="lname" value="" required>
-        <br>
-        <label for="street">Street:</label>
-        <input type="text" id="street" name="street" value="" required>
-        <br>
-        <label for="city">City:</label>
-        <input type="text" id="city" name="city" value="" required>
-        <br>
-        <label for="state">State:</label>
-        <input type="text" id="state" name="state" value="" required>
-        <br>
-        <label for="zip">Zip:</label>
-        <input type="text" id="zip" name="zip" value="" required>
-        <br>
-      </fieldset>
-      <br>
-      <fieldset>
-        <legend>Payment Information</legend>
-        <label for="cardNumber">Credit Card Number:</label>
-        <input type="text" id="cardNumber" name="cardNumber" value="" required>
-        <br>
-        <label for="expiration">Expiration Date:</label>
-        <input type="text" id="expiration" name="expiration" value="" required>
-        <br>
-        <label for="code">Security Code:</label>
-        <input type="text" id="code" name="code" value="" required>
-        <br>
+        <legend>Shipping Information</legend>
+
+        <label for="fname">
+          <input type="text" id="fname" name="fname" placeholder="First Name" required>
+        </label>
+
+        <label for="lname">
+          <input type="text" id="lname" name="lname" placeholder="Last Name" required>
+        </label>
+        <label for="street">
+          <input type="text" id="street" name="street" placeholder="Street Address" required>
+        </label>
+
+        <label for="city">
+          <input type="text" id="city" name="city" placeholder="City" required>
+        </label>
+
+        <label for="state">
+          <input type="text" id="state" name="state" placeholder="State" required>
+        </label>
+        <label for="zip">
+          <input type="text" id="zip" name="zip" placeholder="Zip Code" required>
+        </label>
       </fieldset>
 
-      <fieldset class="checkout-summary">
-        <legend>Order Summary</legend>
-          <label>Item Subtotal</label>
-          <span id="num-items"></span>
-          <p id="cartTotal"></p>
-          <label>Shipping Estimate</label>
-          <p id="shipping"></p>
-          <label>Tax</label>
-          <p id="tax"></p>
-          <label><b>Order Total</b></label>
-          <p id="orderTotal"></p>
-      </fieldset>
-      <br>
-      <button id="checkoutSubmit" type="submit">Submit Order</button>
-    </form>
+      <fieldset class="fieldserPaymentInformation">
+        <legend>Payment Information</legend>
+        <label for="cardNumber">
+          <input type="text" id="cardNumber" name="cardNumber" placeholder="Credit Card Number" required>
+        </label>
+
+        <label for="expiration">
+          <input type="text" id="expiration" name="expiration" placeholder="Expiration Date" required>
+        </label>
+
+        <label for="code">
+          <input type="text" id="code" name="code" placeholder="Security Code" required>
+        </label>
+
+        <button id="checkoutSubmit" type="submit">Place Order</button>
+        
+      </fieldset>  
+
+      </form>
+      <div class="checkout-summary">
+        <h3>Order Summary</h3>
+          <div>
+            <p>Item Subtotal: (<span id="num-items"></span>)</p>
+            <p id="cartTotal">$</p>
+          </div>
+          <div>
+            <p for="shipping">Shipping Estimate</p>
+            <p id="shipping">$</p>
+          </div>
+          <div>
+            <p>Tax</p>
+            <p id="tax">$</p>
+          </div>
+          <div class="totalOrderContainer">
+            <p><b>Total Order</b></p>
+            <p id="orderTotal">$</p>
+          </div>
+      </div>
   </div>
   </main>
-  <footer id="main-footer"></footer>
 </body>
 
 </html>

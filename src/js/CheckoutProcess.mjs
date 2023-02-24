@@ -7,7 +7,6 @@ const services = new ExternalServices();
 function formDataToJSON(formElement) {
     const formData = new FormData(formElement),
     convertedJSON = {};
-
     formData.forEach(function (value, key) {
     convertedJSON[key] = value;
     });
@@ -75,7 +74,7 @@ export default class CheckoutProcess {
         json.tax = this.tax;
         json.shipping = this.shipping;
         json.items = packageItems(this.list);
-        console.log("json", json);
+        
         try {
             const res = await services.checkout(json);
             console.log(res);
@@ -84,8 +83,9 @@ export default class CheckoutProcess {
         } catch (err) {
             // Get rid of any preexisting alerts.
             removeAllAlerts();
-            for (let message in err.message) {
-                alertMessage(err.message[message]);
+            const jsonResponse = await err.message;
+            for (let message in jsonResponse) {
+                alertMessage(jsonResponse[message]);
             }
             console.log(err);
         }
