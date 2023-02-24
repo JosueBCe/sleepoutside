@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, numberItems } from "./utils.mjs";
 import Alert from "./alert.js";
 
 function productDetailsTemplate(product) {
@@ -45,10 +45,10 @@ export default class ProductDetails {
       .addEventListener("click", this.addToCart.bind(this));
   }
   addToCart() {
-    // let Data = getLocalStorage("so-cart");
-    // Data.push(this.product);
-    // setLocalStorage("so-cart", Data);
-
+    
+    numberItems("so-cart", ".numberCartItems");
+    window.location.reload();
+    
     // The cart will shake to indicate something has been added to the cart
     document.querySelector(".rise-shake").style.animation = "jump-shaking 0.100s"
     
@@ -74,7 +74,6 @@ export default class ProductDetails {
       this.product.quantity = 1;
       Data.push(this.product);
     }
-
     setLocalStorage("so-cart", Data);
   }
 

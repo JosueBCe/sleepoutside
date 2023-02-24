@@ -1,14 +1,14 @@
 // import ProductListing from "./ProductList.mjs";
-// import ProductData from "./ProductData.mjs";
+// import ExternalServices from "./ExternalServices.mjs";
 
 import { loadHeaderFooter, numberItems } from "./utils.mjs";
 import { newsLetterTemplate, responseToSubmission } from "./NewsLetter.mjs";
 import { logProductCard } from "./QuickLook.mjs";
 
 loadHeaderFooter();
-numberItems("so-cart");
+numberItems("so-cart", ".numberCartItems");
 
-// const dataSource = new ProductData("tents");
+// const dataSource = new ExternalServices("tents");
 // const element = document.querySelector(".product-list");
 // const listing = new ProductListing("Tents", dataSource, element);
 
