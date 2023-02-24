@@ -54,7 +54,6 @@ export default class ProductDetails {
     
     showSnackBar()
 
-
     let Data = getLocalStorage("so-cart");
     if (Data) {
       let tent = 1;
@@ -88,11 +87,7 @@ export default class ProductDetails {
   }
 }
 
-async function showSnackBar() {
-  let div = document.querySelector("#snackbar");
-  div.className = "show";
-  setTimeout(function(){ div.className = div.className.replace("show", ""); }, 3000);   // After 3 seconds, remove the show class from DIV
-  console.log("testSnackBar")
+function showSnackBar() {
   const alert = new Alert();
+  alert.fetchData();
 }
-
