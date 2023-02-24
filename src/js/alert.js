@@ -13,6 +13,7 @@ export default class Alert {
       div.style.background = data[0].background;
       div.style.color = data[0].color;
       setTimeout(function(){ div.className = div.className.replace("show", ""); }, 3000);   // After 3 seconds, remove the show class from DIV
-    } 
+      // window.location.reload();
+    }  
   }
 }
