@@ -47,11 +47,17 @@ export default class ProductDetails {
   addToCart() {
     
     numberItems("so-cart", ".numberCartItems");
-    
+
     // The cart will shake to indicate something has been added to the cart
-    document.querySelector(".rise-shake").style.animation = "jump-shaking 0.100s"
+    document.querySelector(".rise-shake").style.animation = "jump-shaking 0.85s";
+
+    showSnackBar();
+
+    setTimeout(function () {
+      window.location.reload();
+    }, 1500); 
+
     
-    showSnackBar()
 
     let Data = getLocalStorage("so-cart");
     if (Data) {

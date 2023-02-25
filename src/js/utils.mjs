@@ -117,11 +117,11 @@ export async function alertMessage(message, scroll = true, duration = 9300) {
   // add a class to style the alert
   alert.classList.add("alert");
   // set the contents. You should have a message and an X or something the user can click on to remove
-  alert.innerHTML = `<p>${message}</p><span>X</span>`;
+  alert.innerHTML = `<div class="alertError"><p class="messageError">${message}</p><button id="buttonError">&#10006;</button></div>`;
   // add a listener to the alert to see if they clicked on the X
   // if they did then remove the child
   alert.addEventListener("click", function(e) {
-      if(e.target.tagName == "SPAN") { // how can we tell if they clicked on our X or on something else?  hint: check out e.target.tagName or e.target.innerText
+      if(e.target.tagName == "BUTTON") { // how can we tell if they clicked on our X or on something else?  hint: check out e.target.tagName or e.target.innerText
         main.removeChild(this);
       }
   });
