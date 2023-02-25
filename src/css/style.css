@@ -971,3 +971,19 @@ div.totalOrderContainer {
     opacity: 0;
   }
 }
+
+/* Add to wishlist for the products */
+#addToWishlist {
+  background-color: #f8b400;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+#addToWishlist:hover {
+  background-color: #e6a200;
+}
