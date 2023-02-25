@@ -45,10 +45,23 @@ export default class ProductDetails {
       .getElementById("addToCart")
       .addEventListener("click", this.addToCart.bind(this));
     
-    document
-     .getElementById("addToWishlist")
-     .addEventListener("click", this.addToWishlist.bind(this));
+    // Retrieve the wishlist data from local storage
+    const wishlist = getLocalStorage("wishlist") || [];
+    
+    // Loop through the wishlist items and add them to the HTML
+    const wishlistContainer = document.createElement("div");
+    wishlistContainer.classList.add("wishlist-container");
+    wishlist.forEach(itemId => {
+      const item = document.createElement("div");
+      item.classList.add("wishlist-item");
+      item.textContent = `Item ${itemId}`;
+      wishlistContainer.appendChild(item);
+    });
+    
+    // Add the wishlist container to the main element
+    document.querySelector("main").appendChild(wishlistContainer);
   }
+  
   addToCart() {
     
     numberItems("so-cart", ".numberCartItems");
