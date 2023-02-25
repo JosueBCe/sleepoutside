@@ -22,6 +22,7 @@ function productDetailsTemplate(product) {
           </p>
           <div class="product-detail__add">
             <button id="addToCart" data-id="${product.Id}">Add To Cart</button>
+            <button id="addToWishlist" data-id="${product.Id}">Add To Wishlist</button>
             <div id="snackbar">1 item added to cart</div>
           </div>
           </section>`;
@@ -43,6 +44,10 @@ export default class ProductDetails {
     document
       .getElementById("addToCart")
       .addEventListener("click", this.addToCart.bind(this));
+    
+    document
+     .getElementById("addToWishlist")
+     .addEventListener("click", this.addToWishlist.bind(this));
   }
   addToCart() {
     
@@ -84,6 +89,31 @@ export default class ProductDetails {
     
   }
 
+
+  addToWishlist() {
+    let Data = getLocalStorage("so-wishlist");
+    if (!Data) {
+      Data = [];
+    }
+
+    let tent = 1;
+    for (let i = 0; i < Data.length; i++) {
+      if (Data[i].Id == this.product.Id) {
+        tent = 0;
+        break;
+      }
+    }
+
+    if (tent == 1) {
+      Data.push(this.product);
+      setLocalStorage("so-wishlist", Data);
+      showSnackBar("1 item added to wishlist");
+    } else {
+      showSnackBar("Item already in wishlist");
+    }
+  }
+
+
   renderProductDetails(selector) {
     const element = document.querySelector(selector);
     element.insertAdjacentHTML(
@@ -93,7 +123,12 @@ export default class ProductDetails {
   }
 }
 
-function showSnackBar() {
-  const alert = new Alert();
-  alert.fetchData();
+function showSnackBar(message) {
+  const snackbar = document.getElementById("snackbar");
+  snackbar.textContent = message;
+  snackbar.classList.add("show");
+
+  setTimeout(() => {
+    snackbar.classList.remove("show");
+  }, 1500);
 }
