@@ -23,6 +23,15 @@ function productDetailsTemplate(product) {
           <div class="product-detail__add">
             <button id="addToCart" data-id="${product.Id}">Add To Cart</button>
             <div id="snackbar">1 item added to cart</div>
+            <button id="add-to-wishlist-btn">Add to Wish List</button>
+          </div>
+          <div class="cart-item">
+            <div class="cart-item-details">
+              <h3>Cedar Ridge Rimrock 2-person tent</h3>
+              <p>Price: $149.99</p>
+              <p>Quantity: 1</p>
+              <button class="move-to-wishlist-btn">Move to Wish List</button>
+            </div>
           </div>
           </section>`;
 }

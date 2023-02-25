@@ -10,6 +10,42 @@ const dataSource = new ExternalServices("tents");
 const product = new ProductDetails(productId, dataSource);
 
 product.init();
+function addToWishList() {
+  const wishList = JSON.parse(localStorage.getItem("wishList")) || [];
+
+  if (!wishList.includes(productId)) {
+    wishList.push(productId);
+    localStorage.setItem("wishList", JSON.stringify(wishList));
+    alert("Added to Wish List!");
+  } else {
+    const index = wishList.indexOf(productId);
+    wishList.splice(index, 1);
+    localStorage.setItem("wishList", JSON.stringify(wishList));
+    alert("Removed from Wish List.");
+  }
+}
+const addToWishListBtn = document.getElementById("add-to-wishlist-btn");
+addToWishListBtn.addEventListener("click", addToWishList);
+
+
+const moveToWishListBtns = document.querySelectorAll(".move-to-wishlist-btn");
+moveToWishListBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const cartItems = JSON.parse(localStorage.getItem("so-cart")) || [];
+    const wishList = JSON.parse(localStorage.getItem("wishList")) || [];
+    const index = cartItems.findIndex(items => items.id === productId);
+    const itemList = cartItems[index];
+    cartItems.splice(index, 1);
+    localStorage.setItem("so-cart", JSON.stringify(cartItems));
+    if (!wishList.includes(productId)) {
+      wishList.push(productId);
+      localStorage.setItem("wishList", JSON.stringify(wishList));
+      alert("Added to Wish List!");
+    }
+    numberItems("so-cart", ".numberCartItems");
+    itemList();
+  });
+});
 
 // console.log(dataSource.findProductById(productId));
 
