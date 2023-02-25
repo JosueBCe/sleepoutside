@@ -977,7 +977,9 @@ div.totalOrderContainer {
   background-color: #f8b400;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 10px 30px;
+  position: relative;
+  top: 10px;
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
