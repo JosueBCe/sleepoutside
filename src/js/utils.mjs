@@ -80,14 +80,21 @@ export async function loadHeaderFooter() {
 }
 
 //Function to display the number of items in the Backpack Icon
-export function numberItems(storageKey, selector) {
-  const cartItems = JSON.parse(localStorage.getItem(storageKey)) || [];
-  const wishList = JSON.parse(localStorage.getItem("wishList")) || [];
-  const totalItems = cartItems.length + wishList.length;
-  const numberCartItems = document.querySelector(selector);
-  numberCartItems.textContent = totalItems;
-}
+export function numberItems(key, outputSelector = null) {
+  const cart = getLocalStorage(key) || [];
+  
+  let total = 0;
+  cart.forEach(item => total += item.quantity);
 
+  if (outputSelector) {
+    let numTotal = document.querySelector(outputSelector);
+    if (!isNaN(total)) {
+      numTotal.innerHTML += total;
+    }
+  }
+  
+  return total;
+}
 
 export function calculateShippingCost(numItems) {
   // If there's only one item, the shipping cost is $10
