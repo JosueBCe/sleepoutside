@@ -1,67 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sleep Outside | Cedar Ridge Rimrock 2-person tent</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <script src="../js/checkout.js" type="module"></script>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sleep Outside | Cedar Ridge Rimrock 2-person tent</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/checkout.js" type="module"></script>
+  </head>
 
-<body class="bodyForm">
-  <header>
-    <h1 class="segment">Review &amp; Place your Order</h1>
-  </header>
-  <main>
-  <div class="formContainer">
-    <form name="checkout">
-      <fieldset>
-        <legend>Shipping Information</legend>
+  <body class="bodyForm">
+    <header>
+      <h1 class="segment">Review &amp; Place your Order</h1>
+    </header>
+    <main>
+      <div class="formContainer">
+        <form name="checkout">
+          <fieldset>
+            <legend>Shipping Information</legend>
 
-        <label for="fname">
-          <input type="text" id="fname" name="fname" placeholder="First Name" required>
-        </label>
+            <label for="fname">
+              <input
+                type="text"
+                id="fname"
+                name="fname"
+                placeholder="First Name"
+                required
+              />
+            </label>
 
-        <label for="lname">
-          <input type="text" id="lname" name="lname" placeholder="Last Name" required>
-        </label>
-        <label for="street">
-          <input type="text" id="street" name="street" placeholder="Street Address" required>
-        </label>
+            <label for="lname">
+              <input
+                type="text"
+                id="lname"
+                name="lname"
+                placeholder="Last Name"
+                required
+              />
+            </label>
+            <label for="street">
+              <input
+                type="text"
+                id="street"
+                name="street"
+                placeholder="Street Address"
+                required
+              />
+            </label>
 
-        <label for="city">
-          <input type="text" id="city" name="city" placeholder="City" required>
-        </label>
+            <label for="city">
+              <input
+                type="text"
+                id="city"
+                name="city"
+                placeholder="City"
+                required
+              />
+            </label>
 
-        <label for="state">
-          <input type="text" id="state" name="state" placeholder="State" required>
-        </label>
-        <label for="zip">
-          <input type="text" id="zip" name="zip" placeholder="Zip Code" required>
-        </label>
-      </fieldset>
+            <label for="state">
+              <input
+                type="text"
+                id="state"
+                name="state"
+                placeholder="State"
+                required
+              />
+            </label>
+            <label for="zip">
+              <input
+                type="text"
+                id="zip"
+                name="zip"
+                placeholder="Zip Code"
+                required
+              />
+            </label>
+          </fieldset>
 
-      <fieldset class="fieldserPaymentInformation">
-        <legend>Payment Information</legend>
-        <label for="cardNumber">
-          <input type="text" id="cardNumber" name="cardNumber" placeholder="Credit Card Number" required>
-        </label>
+          <fieldset class="fieldserPaymentInformation">
+            <legend>Payment Information</legend>
+            <label for="cardNumber">
+              <input
+                type="text"
+                id="cardNumber"
+                name="cardNumber"
+                placeholder="Credit Card Number"
+                required
+              />
+            </label>
 
-        <label for="expiration">
-          <input type="text" id="expiration" name="expiration" placeholder="Expiration Date" required>
-        </label>
+            <label for="expiration">
+              <input
+                type="text"
+                id="expiration"
+                name="expiration"
+                placeholder="Expiration Date"
+                required
+              />
+            </label>
 
-        <label for="code">
-          <input type="text" id="code" name="code" placeholder="Security Code" required>
-        </label>
+            <label for="code">
+              <input
+                type="text"
+                id="code"
+                name="code"
+                placeholder="Security Code"
+                required
+              />
+            </label>
 
-        <button id="checkoutSubmit" type="submit">Place Order</button>
-        
-      </fieldset>  
-
-      </form>
-      <div class="checkout-summary">
-        <h3>Order Summary</h3>
+            <button id="checkoutSubmit" type="submit">Place Order</button>
+          </fieldset>
+        </form>
+        <div class="checkout-summary">
+          <h3>Order Summary</h3>
           <div>
             <p>Item Subtotal: (<span id="num-items"></span>)</p>
             <p id="cartTotal">$</p>
@@ -78,9 +130,8 @@
             <p><b>Total Order</b></p>
             <p id="orderTotal">$</p>
           </div>
+        </div>
       </div>
-  </div>
-  </main>
-</body>
-
+    </main>
+  </body>
 </html>

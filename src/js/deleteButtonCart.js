@@ -3,13 +3,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const myCartContainer = document.querySelector(".products");
   let check = JSON.parse(localStorage.getItem("so-cart"));
   //check if the localstorage is empty
-  if (check == null) {
+  if (check == null || check == 0) {
     const messageEmptyCart = document.createElement("p");
     messageEmptyCart.textContent = "Your cart is empty!";
     messageEmptyCart.style.fontSize = "2rem";
     messageEmptyCart.style.fontWeight = "bold";
     myCartContainer.appendChild(messageEmptyCart);
     messageEmptyCart.style.textAlign = "center";
+    document.querySelector("#checkoutButton").style.display = "none";
+    document.querySelector(".cart-total").textContent = "";
+    document.querySelector(".myCartTitle").textContent = "";
   }
   //if the localstorage is not empty
   else {

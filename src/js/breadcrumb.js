@@ -5,13 +5,15 @@ const category = getCategoryFromUrl();
 const breadcrumbElement = document.querySelector(".breadcrumb");
 let breadcrumbHtml = "";
 if (category) {
-  breadcrumbHtml += `<a href="/">Home</a> > <a href="/product-listing/index.html?category=${category}">${getCategoryName(category)}</a>`;
+  breadcrumbHtml += `<a href="/">Home</a> > <a href="/product-listing/index.html?category=${category}">${getCategoryName(
+    category
+  )}</a>`;
   if (product) {
     breadcrumbHtml += ` > ${product}`;
   }
 } else {
   breadcrumbHtml += "Home";
-} 
+}
 breadcrumbElement.innerHTML = breadcrumbHtml;
 
 export function getCategoryFromUrl() {
@@ -33,5 +35,3 @@ export function getCategoryName(cat) {
       return "";
   }
 }
-
-

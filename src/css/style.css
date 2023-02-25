@@ -434,7 +434,8 @@ input#email {
 #sortPrice:hover,
 #addToCart:hover,
 #buttonVisit:hover,
-#register:hover {
+#register:hover,
+#buttonError:hover {
   background-color: #525b0fc9;
   transition: all ease-in-out 0.3s;
 }
@@ -536,7 +537,6 @@ footer {
   text-align: center;
 }
 
-
 /* ---------------------------- */
 /* -- SORT by Price and Name -- */
 /* ---------------------------- */
@@ -583,14 +583,14 @@ footer {
   text-decoration: none;
 }
 /* ========================form checkout======================= */
-:root{
-  --color-red: #AE1100;
-  --color-bg: #EBECF0;
+:root {
+  --color-red: #ae1100;
+  --color-bg: #ebecf0;
   --color-shadow: #7c7e84;
-  --color-white: #FFF;
+  --color-white: #fff;
 }
 .bodyForm {
-  background-color: var(--color-bg)
+  background-color: var(--color-bg);
 }
 /* body, p, input, select, textarea, button {
     font-family: 'Montserrat', sans-serif;
@@ -598,7 +598,8 @@ footer {
     font-size: $ruler;
 }
  */
-.formContainer, .formContainer p {
+.formContainer,
+.formContainer p {
   color: var(--color-shadow);
   text-shadow: 1px 1px 1px var(--color-white);
 }
@@ -627,7 +628,8 @@ footer {
   color: var(--color-shadow);
 }
 
-.formContainer button, .formContainer input {
+.formContainer button,
+.formContainer input {
   border: 0;
   outline: 0;
   font-size: 1rem;
@@ -646,7 +648,8 @@ footer {
 
 .formContainer form input {
   margin-right: 1rem / 2;
-  box-shadow:  inset 2px 2px 5px var(--color-shadow), inset -5px -5px 10px var(--color-white);
+  box-shadow: inset 2px 2px 5px var(--color-shadow),
+    inset -5px -5px 10px var(--color-white);
   width: 100%;
   box-sizing: border-box;
   transition: all 0.2s ease-in-out;
@@ -654,23 +657,26 @@ footer {
   -webkit-appearance: none;
 }
 .formContainer form input:focus {
-    box-shadow:  inset 1px 1px 2px var(--color-shadow), inset -1px -1px 2px var(--color-white);
+  box-shadow: inset 1px 1px 2px var(--color-shadow),
+    inset -1px -1px 2px var(--color-white);
 }
 
 .formContainer form button {
-  color:#61677C;
+  color: #61677c;
   font-weight: bold;
-  box-shadow: -5px -5px 20px var(--color-white),  5px 5px 20px var(--color-shadow);
+  box-shadow: -5px -5px 20px var(--color-white),
+    5px 5px 20px var(--color-shadow);
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   font-weight: 600;
-}  
+}
 .formContainer form button:hover {
-    box-shadow: -2px -2px 5px var(--color-white), 2px 2px 5px var(--color-shadow);
-  }
+  box-shadow: -2px -2px 5px var(--color-white), 2px 2px 5px var(--color-shadow);
+}
 
 .formContainer form button:active {
-  box-shadow: inset 1px 1px 2px var(--color-shadow), inset -1px -1px 2px var(--color-white);
+  box-shadow: inset 1px 1px 2px var(--color-shadow),
+    inset -1px -1px 2px var(--color-white);
 }
 .checkout-summary {
   display: flex;
@@ -696,6 +702,27 @@ div.totalOrderContainer {
   border-top: 1px black solid;
   border-radius: 0;
 }
+
+.alertError {
+  display: flex;
+  justify-content: space-between;
+  max-width: 30rem;
+  background-color: #3c3f25c9;
+  margin: auto;
+  padding: 0.9rem;
+  border-radius: 2rem;
+}
+
+#buttonError,
+.messageError {
+  margin: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: auto 1rem;
+  border-radius: 1rem;
+  color: #ccc;
+}
+
 /* .icon {
   margin-right: $ruler/2;
 }
@@ -731,9 +758,7 @@ div.totalOrderContainer {
     margin: 0;
     flex: 1;
   }
-} */  
-
-
+} */
 
 /* ========================medium view================================ */
 @media (min-width: 35rem) {
@@ -757,12 +782,12 @@ div.totalOrderContainer {
     grid-template-columns: auto auto;
     grid-gap: 1rem;
   }
-  
+
   /* ==========sort buttons=========== */
   .sort button {
     padding: 0.8rem 1.3rem;
   }
-/* ================form checkout section============= */
+  /* ================form checkout section============= */
   .formContainer {
     display: grid;
     grid-template-columns: auto auto;
@@ -779,7 +804,6 @@ div.totalOrderContainer {
   .products {
     display: grid;
     grid-template-columns: auto;
-
   }
 }
 
@@ -817,7 +841,7 @@ div.totalOrderContainer {
     display: flex;
     justify-content: center;
   }
-  .formContainer form{
+  .formContainer form {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -825,7 +849,6 @@ div.totalOrderContainer {
   #checkoutSubmit {
     margin-top: 13rem;
   }
-
 }
 
 /*Style for the breadcrumb*/
@@ -842,8 +865,6 @@ div.totalOrderContainer {
   text-decoration: underline;
 }
 
-
-
 /* --------------------------- */
 /* -- Modal for First Visit -- */
 /* --------------------------- */
@@ -855,15 +876,16 @@ div.totalOrderContainer {
 
 .modalVisit::backdrop {
   background: #222506c9;
-  opacity: .9;
+  opacity: 0.9;
 }
 
 .titleVisit {
   display: flex;
   justify-content: space-between;
 }
- 
-#buttonVisit, #register{
+
+#buttonVisit,
+#register {
   margin: 0;
   padding: 1rem;
   border: none;
@@ -881,6 +903,7 @@ div.totalOrderContainer {
 .logoAnimation {
   padding: 1rem;
   animation: jump-shaking 1.5s infinite;
+}
 
 /* Style the snack bar */
 #snackbar {
@@ -906,21 +929,45 @@ div.totalOrderContainer {
 }
 
 @-webkit-keyframes fadein {
-  from {bottom: 0; opacity: 0;} 
-  to {bottom: 30px; opacity: 1;}
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
 }
 
 @keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes fadeout {
-  from {bottom: 30px; opacity: 1;} 
-  to {bottom: 0; opacity: 0;}
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }
 
 @keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }

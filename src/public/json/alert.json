@@ -1,3 +1,7 @@
-[{"message": "Item has been added to the cart", 
-"background": "darkblue", 
-"color": "white"}]
+[
+  {
+    "message": "Item has been added to the cart",
+    "background": "darkblue",
+    "color": "white"
+  }
+]
