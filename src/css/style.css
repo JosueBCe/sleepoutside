@@ -275,7 +275,7 @@ span.rise-shake {
 
 .product-detail {
   padding: 1em;
-  max-width: 500px;
+  max-width: 700px;
   margin: auto;
 }
 
@@ -435,7 +435,8 @@ input#email {
 #addToCart:hover,
 #buttonVisit:hover,
 #register:hover,
-#buttonError:hover {
+#buttonError:hover,
+.carouselButton button:hover {
   background-color: #525b0fc9;
   transition: all ease-in-out 0.3s;
 }
@@ -970,4 +971,22 @@ div.totalOrderContainer {
     bottom: 0;
     opacity: 0;
   }
+}
+
+/* CAROUSEL */
+
+.carousel {
+  display: flex;
+  padding: 1rem;
+  font-size: 2rem;
+  justify-content: space-evenly;
+}
+
+.carousel button {
+  padding: 0 1rem;
+  border-radius: 1rem;
+}
+
+.slides {
+  width: 300px;
 }
