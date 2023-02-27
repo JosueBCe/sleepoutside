@@ -55,6 +55,7 @@ export default class ShoppingCart {
       if (cartItems.length != 0) {
         const htmlItems = cartItems.map((item) => cartItemTemplate(item));
         document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
+        //console.log(htmlItems)
     
         cartTotal.style.display = "block"; // Make appear the total paragraph that is hidden by default
         cartTotal.innerHTML = `Total: $${sumTotal(cartItems).toFixed(2)}`
