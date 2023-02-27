@@ -91,6 +91,7 @@ export default class ProductDetails {
 
 
   addToWishlist() {
+    numberItems("so-wishlist", ".wishlist")
     let Data = getLocalStorage("so-wishlist");
     if (!Data) {
       Data = [];
