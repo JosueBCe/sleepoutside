@@ -27,7 +27,10 @@ function productDetailsTemplate(product) {
           </div>
           </section>`;
 }
-
+function showSnackBar() {
+  const alert = new Alert();
+  alert.fetchData();
+}
 export default class ProductDetails {
   constructor(productId, dataSource) {
     this.productId = productId;
@@ -124,7 +127,7 @@ export default class ProductDetails {
     }
   }
 
-
+  
   renderProductDetails(selector) {
     const element = document.querySelector(selector);
     element.insertAdjacentHTML(
@@ -132,16 +135,12 @@ export default class ProductDetails {
       productDetailsTemplate(this.product)
     );
   }
-}
+  renderWishlistItems(selector){
+    const wishListElement = document.querySelector(selector);
+    wishListElement.insertAdjacentHTML(
+      "afterBegin" ,
+      productDetailsTemplate(this.product)
+    );
+  }
 
-function showSnackBar(message) {
-  const snackbar = document.getElementById("snackbar");
-  snackbar.textContent = message;
-  snackbar.classList.add("show");
-  const alert = new Alert();
-  alert.fetchData();
-  setTimeout(() => {
-    snackbar.classList.remove("show");
-  }, 1500);
-}
   
