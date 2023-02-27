@@ -39,7 +39,6 @@ export default class ProductDetails {
     this.product = await this.dataSource.findProductById(this.productId);
     // once we have the product details we can render out the HTML
     this.renderProductDetails("main");
-    this.renderWishlistItems(".product-list");
     // once the HTML is rendered we can add a listener to Add to Cart button
     // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
     document
@@ -121,15 +120,6 @@ export default class ProductDetails {
       "afterBegin",
       productDetailsTemplate(this.product)
     );
-  }
-  renderWishlistItems(selector) {
-    const element = document.querySelector(selector);
-    const wishlistItems = getLocalStorage("so-wishlist");
-    if (wishlistItems) {
-      wishlistItems.forEach((product) => {
-        element.insertAdjacentHTML("beforeend", productDetailsTemplate(product));
-      });
-    }
   }
 }
 
