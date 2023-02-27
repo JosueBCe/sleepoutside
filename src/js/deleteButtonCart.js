@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector("#checkoutButton").style.display = "none";
     document.querySelector(".cart-total").textContent = "";
     document.querySelector(".myCartTitle").textContent = "";
+    document.querySelector(".wishlist").textContent = "Add to Cart";
   }
   //if the localstorage is not empty
   else {
