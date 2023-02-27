@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage, numberItems } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, numberItems, deleteLocalStorageItem } from "./utils.mjs";
 import Alert from "./alert.js";
 
 function productDetailsTemplate(product) {
@@ -127,8 +127,45 @@ function showSnackBar(message) {
   const snackbar = document.getElementById("snackbar");
   snackbar.textContent = message;
   snackbar.classList.add("show");
-
+  const alert = new Alert();
+  alert.show();
   setTimeout(() => {
     snackbar.classList.remove("show");
   }, 1500);
 }
+
+let wishlistItems = [];
+wishlistItems = getLocalStorage("wishlist") || [];
+const wishlistHtml = wishlistItems
+  .map((item) => `<li class="wishlist-card divider">
+              <a href="product_pages/index.html?product=${item.id}" class="wishlist-card__image">
+                <img src="${item.image}" alt="${item.name}" />
+              </a>
+              <a href="product_pages/index.html?product=${item.id}">
+                <h2 class="card__name">${item.name}</h2>
+              </a>
+              <p class="wishlist-card__color">${item.color}</p>
+              <p class="wishlist-card__price">$${item.price}</p>
+              <button class="delete-btn" data-id="${item.id}">Delete</button>
+            </li>`)
+  .join("");
+
+const wishlistContainer = document.createElement("div");
+wishlistContainer.innerHTML = `
+  <h2 class="wishlistTitle">Wishlist</h2>
+  <ul class="wishlist-list">${wishlistHtml}</ul>
+`;
+const productContainer = document.querySelector(".products");
+productContainer.insertBefore(
+  wishlistContainer,
+  productContainer.firstChild
+);
+
+const deleteButtons = document.querySelectorAll(".delete-btn");
+deleteButtons.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const itemId = event.target.getAttribute("data-id");
+    deleteLocalStorageItem("wishlist", itemId);
+    event.target.parentNode.remove();
+  });
+});
