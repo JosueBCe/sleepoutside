@@ -27,31 +27,18 @@ function productDetailsTemplate(product) {
           </div>
           </section>`;
 }
-function showSnackBar() {
-  const alert = new Alert();
-  alert.fetchData();
-}
+
 export default class ProductDetails {
   constructor(productId, dataSource) {
     this.productId = productId;
     this.product = {};
     this.dataSource = dataSource;
   }
-  renderWishlistItems(selector) {
-    const element = document.querySelector(selector);
-    const wishlistItems = getLocalStorage("so-wishlist");
-    if (wishlistItems) {
-      wishlistItems.forEach((product) => {
-        element.insertAdjacentHTML("beforeend", productDetailsTemplate(product));
-      });
-    }
-  }
   async init() {
     // use our datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
     this.product = await this.dataSource.findProductById(this.productId);
     // once we have the product details we can render out the HTML
     this.renderProductDetails("main");
-    // this will be exclusive for the wishlist items
     this.renderWishlistItems(".product-list");
     // once the HTML is rendered we can add a listener to Add to Cart button
     // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
@@ -127,7 +114,7 @@ export default class ProductDetails {
     }
   }
 
-  
+
   renderProductDetails(selector) {
     const element = document.querySelector(selector);
     element.insertAdjacentHTML(
@@ -135,12 +122,23 @@ export default class ProductDetails {
       productDetailsTemplate(this.product)
     );
   }
-  renderWishlistItems(selector){
-    const wishListElement = document.querySelector(selector);
-    wishListElement.insertAdjacentHTML(
-      "afterBegin" ,
-      productDetailsTemplate(this.product)
-    );
+  renderWishlistItems(selector) {
+    const element = document.querySelector(selector);
+    const wishlistItems = getLocalStorage("so-wishlist");
+    if (wishlistItems) {
+      wishlistItems.forEach((product) => {
+        element.insertAdjacentHTML("beforeend", productDetailsTemplate(product));
+      });
+    }
   }
+}
 
-  
+function showSnackBar(message) {
+  const snackbar = document.getElementById("snackbar");
+  snackbar.textContent = message;
+  snackbar.classList.add("show");
+
+  setTimeout(() => {
+    snackbar.classList.remove("show");
+  }, 1500);
+}
