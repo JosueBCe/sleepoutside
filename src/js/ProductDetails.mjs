@@ -1,7 +1,7 @@
 import { getLocalStorage, setLocalStorage, numberItems } from "./utils.mjs";
 import Alert from "./alert.js";
 
-function productDetailsTemplate(product) {
+export function productDetailsTemplate(product) {
   let final_price = Number(product.FinalPrice)
   let suggested_retail_price = Number(product.SuggestedRetailPrice)
   let discount = Math.abs(final_price - suggested_retail_price).toFixed(2)
