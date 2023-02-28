@@ -1,5 +1,5 @@
-import { getLocalStorage } from "./utils.mjs";
-
+import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+import {showSnackBar, productDetailsTemplate} from "./ProductDetails.mjs";
 function cartItemTemplate(item) {
     let final_price = Number(item.FinalPrice)
     let suggested_retail_price = Number(item.SuggestedRetailPrice)
@@ -36,31 +36,104 @@ function cartItemTemplate(item) {
                     `;
     return newItem;
 }
+function wishlistItemTemplate(item) {
+  let final_price = Number(item.FinalPrice)
+  let suggested_retail_price = Number(item.SuggestedRetailPrice)
+  let discount = Math.abs(final_price - suggested_retail_price).toFixed(2)
+  let quantity = Number(item.quantity)
+  let total_discount = (discount * quantity).toFixed(2)
+  let { Images, Name } = item
+  let total_price = Number(final_price * quantity).toFixed(2)
+
+  const newItem = `<li class='cart-card divider'>
+                    <a href='#' class='cart-card__image'>
+                    <img
+                      src="${Images.PrimaryMedium}"
+                      srcset="${Images.PrimarySmall} 350w,
+                              ${Images.PrimaryMedium} 850w,
+                              ${Images.PrimaryLarge} 1350w,
+                              ${Images.PrimaryExtraLarge} 1900w"
+                      sizes="(max-width: 350px) 320px,
+                            (max-width: 850px) 768px,
+                            (max-width: 1350px) 1200px,
+                            1900px"
+                      alt="Image of ${Name}"
+                    />
+                    </a>
+                    <a href='#'>
+                      <h2 class='card__name'>${item.Name}</h2>
+                    </a>
+                    <p class='cart-card__color'>${item.Colors[0].ColorName}</p>
+                    <p class='cart-card__quantity'>Quantity: ${item.quantity}</p>
+                    <p class='cart-card__price'>Unit Price: $${item.FinalPrice}</p>
+                    <p class='cart-card__price'>Total: $${total_price}</p>
+                    <p class='saved'>Saved: $${total_discount}<p>
+                  </li>
+                  `;
+  return newItem;
+}
 
 export default class ShoppingCart {
-    constructor(key, parentSelector) {
-      this.key = key;
-      this.parentSelector = parentSelector;
+  constructor(key, parentSelector) {
+    this.key = key;
+    this.parentSelector = parentSelector;
+    this.renderCartContents = this.renderCartContents.bind(this);
+    this.renderWishlistContents = this.renderWishlistContents.bind(this);
+  }
+
+  renderCartContents() {
+    const cartItems = getLocalStorage(this.key) || [];
+    let cartTotal = document.querySelector(".cart-total")
+
+    /* If there's something in the Cart, display the items and the total sum of them. */
+    if (cartItems.length != 0) {
+      const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+      document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
+      //console.log(htmlItems)
+
+      cartTotal.style.display = "block"; // Make appear the total paragraph that is hidden by default
+      cartTotal.innerHTML = `Total: $${sumTotal(cartItems).toFixed(2)}`
     }
-    // renderCartContents() {
-    //   const cartItems = getLocalStorage(this.key);
-    //   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-    //   document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
-    // }
-    renderCartContents() {
-      const cartItems = getLocalStorage(this.key) || [];
-      let cartTotal = document.querySelector(".cart-total")
-    
-      /* If there's something in the Cart, display the items and the total sum of them. */
-      if (cartItems.length != 0) {
-        const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-        document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
-        //console.log(htmlItems)
-    
-        cartTotal.style.display = "block"; // Make appear the total paragraph that is hidden by default
-        cartTotal.innerHTML = `Total: $${sumTotal(cartItems).toFixed(2)}`
+  }
+
+  renderWishlistContents() {
+    const wishlistItems = getLocalStorage("so-wishlist") || [];
+    if (wishlistItems.length != 0) {
+      const htmlItems = wishlistItems.map((item) => wishlistItemTemplate(item));
+      document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
+    }
+  }
+
+  addToWishlist() {
+    let Data = getLocalStorage("so-wishlist");
+    if (!Data) {
+      Data = [];
+    }
+
+    let tent = 1;
+    for (let i = 0; i < Data.length; i++) {
+      if (Data[i].Id == this.product.Id) {
+        tent = 0;
+        break;
       }
     }
+
+    if (tent == 1) {
+      Data.push(this.product);
+      setLocalStorage("so-wishlist", Data);
+      showSnackBar("1 item added to wishlist");
+    } else {
+      showSnackBar("Item already in wishlist");
+    }
+  }
+
+  renderProductDetails(selector) {
+    const element = document.querySelector(selector);
+    element.insertAdjacentHTML(
+      "afterBegin",
+      productDetailsTemplate(this.product)
+    );
+  }
 }
 
 export function sumTotal(cart) {
