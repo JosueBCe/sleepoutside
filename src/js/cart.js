@@ -10,9 +10,7 @@ shoppingBag.renderCartContents();
 
 
 const shoppingWishList = new ShoppingCart("so-wishlist", ".wishlist");
-
 shoppingWishList.renderCartContents();
-
 // function renderCartContents() {
 //   const cartItems = getLocalStorage("so-cart") || [];
 //   let cartTotal = document.querySelector(".cart-total")
