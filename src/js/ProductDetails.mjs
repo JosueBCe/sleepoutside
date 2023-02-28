@@ -124,7 +124,7 @@ export default class ProductDetails {
   }
 }
 
-function showSnackBar(message) {
+export function showSnackBar(message) {
   const snackbar = document.getElementById("snackbar");
   snackbar.textContent = message;
   snackbar.classList.add("show");
