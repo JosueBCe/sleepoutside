@@ -1,7 +1,7 @@
 import { getLocalStorage, setLocalStorage, numberItems } from "./utils.mjs";
 import Alert from "./alert.js";
 
-export function productDetailsTemplate(product) {
+function productDetailsTemplate(product) {
   let final_price = Number(product.FinalPrice)
   let suggested_retail_price = Number(product.SuggestedRetailPrice)
   let discount = Math.abs(final_price - suggested_retail_price).toFixed(2)
@@ -124,7 +124,7 @@ export default class ProductDetails {
   }
 }
 
-export function showSnackBar(message) {
+function showSnackBar(message) {
   const snackbar = document.getElementById("snackbar");
   snackbar.textContent = message;
   snackbar.classList.add("show");

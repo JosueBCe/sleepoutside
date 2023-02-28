@@ -79,7 +79,6 @@ export default class CheckoutProcess {
             const res = await services.checkout(json);
             console.log(res);
             setLocalStorage("so-cart", []);
-            setLocalStorage("so-wishlist", []);
             location.assign("/checkout/success.html");
         } catch (err) {
             // Get rid of any preexisting alerts.
