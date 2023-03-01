@@ -1,6 +1,6 @@
 import { loadHeaderFooter, numberItems } from "./utils.mjs";
 import ShoppingCart from "./ShoppingCart.mjs";
-
+import ShoppingWishlistCart from "./ShoppingCart.mjs";
 loadHeaderFooter();
 numberItems("so-cart", ".numberCartItems");
 
@@ -9,9 +9,9 @@ const shoppingBag = new ShoppingCart("so-cart", ".product-list");
 shoppingBag.renderCartContents();
 
 
-const shoppingWishList = new ShoppingCart("so-wishlist", ".wishlist");
+const shoppingWishList = new ShoppingWishlistCart("so-wishlist", ".wishlist");
 
-shoppingWishList.renderCartContents();
+shoppingWishList.renderWishListContents();
 
 // function renderCartContents() {
 //   const cartItems = getLocalStorage("so-cart") || [];
