@@ -1,19 +1,23 @@
-import { getLocalStorage, sumTotal } from "./utils.mjs";
+import { getLocalStorage } from "./utils.mjs";
+import { sumTotal } from "./ShoppingCart.mjs";
 
 export default class ShoppingWishCart{
   constructor(key, parentSelector) {
     this.key = key;
     this.parentSelector = parentSelector;
   }
+
   renderWishlistContents(){
     const wishlistItems = getLocalStorage(this.key) || [];
     let wishlistTotal = document.querySelector(".wishlist-total");
-    if (wishlistItems.length != 0) {
-      const htmlItems = wishlistItems.map((item) => wishlistItemTemplate(item));
-      document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
-      wishlistTotal.style.display = "block"; // Make appear the total paragraph that is hidden by default
-      wishlistTotal.innerHTML = `Total: $${sumTotal(wishlistItems).toFixed(2)}`
+    if (wishlistTotal !== 0) { // Check if wishlistTotal is not null
+      if (wishlistItems.length != 0) {
+        const htmlItems = wishlistItems.map((item) => wishlistItemTemplate(item));
+        document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
+        wishlistTotal.style.display = "block"; // Make appear the total paragraph that is hidden by default
+        wishlistTotal.innerHTML = `Total: $${sumTotal(wishlistItems).toFixed(2)}`
       }
+    }
   }
 }
 
@@ -54,7 +58,9 @@ function wishlistItemTemplate(item) {
                     <p class='cart-card__price'>Unit Price: $${final_price}</p>
                     <p class='cart-card__price'>Total: $${total_price}</p>
                     <p class='saved'>Saved: $${total_discount}<p>
+                    <button class='add-to-cart-btn' onclick='addToCart(${item.Id})'>Add to Cart</button>
                   </li>
                   `;
   return newItem;
 }
+
