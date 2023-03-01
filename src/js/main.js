@@ -7,6 +7,7 @@ import {
 import { newsLetterTemplate, responseToSubmission } from "./NewsLetter.mjs";
 import { logProductCard } from "./QuickLook.mjs";
 
+
 loadHeaderFooter();
 numberItems("so-cart", ".numberCartItems");
 
@@ -41,3 +42,6 @@ closeModalFirstVisit.addEventListener("click", () => {
 registerFirstVisit.addEventListener("click", () => {
   // console.log("Register Form");
 });
+
+
+

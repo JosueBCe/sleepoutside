@@ -56,4 +56,39 @@ export default class ExternalServices {
     // return data.Result;
     return await fetch(baseURL + "checkout/", options).then(convertToJson);
   }
+
+  async loginRequest(email, password,apiUrl) {
+
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log(`Logged in with token: ${data.accessToken}`);
+      return data.accessToken
+
+  }
+
+  async getOrders(token) {
+    const options = {
+      method: "GET",
+      // the server will reject our request if we don't include the Authorization header with a valid token!
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const response = await fetch(baseURL + "orders", options).then(
+      convertToJson
+    );
+    return response;
+  }
+  
 }
