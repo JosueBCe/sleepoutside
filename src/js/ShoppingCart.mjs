@@ -48,19 +48,75 @@ export default class ShoppingCart {
     //   document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
     // }
     renderCartContents() {
-      const cartItems = getLocalStorage(this.key) || [];
-      let cartTotal = document.querySelector(".cart-total")
+      let total = 0;
+      let saved = 0;
+      const cartItems = JSON.parse(localStorage.getItem(this.cartName)) || [];
     
-      /* If there's something in the Cart, display the items and the total sum of them. */
-      if (cartItems.length != 0) {
-        const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-        document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
-        //console.log(htmlItems)
+      // clear the list of products
+      const productList = document.querySelector(this.productListSelector);
+      productList.innerHTML = "";
     
-        cartTotal.style.display = "block"; // Make appear the total paragraph that is hidden by default
-        cartTotal.innerHTML = `Total: $${sumTotal(cartItems).toFixed(2)}`
+      // iterate over each item in the cart and add it to the list of products
+      for (let item of cartItems) {
+        // calculate the price and savings for the item
+        const price = item.Price * item.Quantity;
+        const savings = item.Savings * item.Quantity;
+    
+        // create a new product card for the item
+        const productCard = document.createElement("li");
+        productCard.classList.add("cart-card");
+    
+        // fill in the product card with the item's information
+        const cardImage = document.createElement("img");
+        cardImage.classList.add("card__image");
+        cardImage.src = item.Image;
+        cardImage.alt = item.Name;
+        productCard.appendChild(cardImage);
+    
+        const cardInfo = document.createElement("div");
+        cardInfo.classList.add("card__info");
+        productCard.appendChild(cardInfo);
+    
+        const cardName = document.createElement("h3");
+        cardName.classList.add("card__name");
+        cardName.textContent = item.Name;
+        cardInfo.appendChild(cardName);
+    
+        const cardPrice = document.createElement("p");
+        cardPrice.classList.add("card__price");
+        cardPrice.textContent = "$" + price.toFixed(2);
+        cardInfo.appendChild(cardPrice);
+    
+        const cardQuantity = document.createElement("p");
+        cardQuantity.classList.add("cart-card__quantity");
+        cardQuantity.textContent = "Quantity: " + item.Quantity;
+        cardInfo.appendChild(cardQuantity);
+    
+        const cardSavings = document.createElement("p");
+        cardSavings.classList.add("cart-card__savings");
+        cardSavings.textContent = "Saved: $" + savings.toFixed(2);
+        cardInfo.appendChild(cardSavings);
+    
+        productList.appendChild(productCard);
+    
+        // add the price and savings for the item to the total and saved variables
+        total += price;
+        saved += savings;
+      }
+    
+      // update the cart footer with the total and saved values
+      const cartFooter = document.querySelector(".cart-footer");
+      const cartTotal = cartFooter.querySelector(".cart-total");
+      cartTotal.textContent = "Total: $" + total.toFixed(2);
+      const cartSaved = cartFooter.querySelector(".cart-saved");
+      cartSaved.textContent = "Saved: $" + saved.toFixed(2);
+    
+      // display the cart footer if there are items in the cart
+      if (cartItems.length > 0) {
+        cartFooter.classList.remove("hide");
       }
     }
+    
 }
 
 export function sumTotal(cart) {
