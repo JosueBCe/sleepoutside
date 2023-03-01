@@ -1,8 +1,24 @@
-// Admin.mjs
-
 class Admin {
-  login(email, password) {
-    // Logic for logging in
+  async login(email, password) {
+    const response = await fetch("http://server-nodejs.cit.byui.edu:3000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email, password })
+    });
+
+    if (!response.ok) {
+      throw new Error("Login failed");
+    }
+
+    const data = await response.json();
+
+    return {
+      email: data.email,
+      password: data.password,
+      isAdmin: true
+    }
   }
 
   showLogin() {
@@ -21,11 +37,17 @@ class Admin {
 
     const submitButton = document.createElement("button");
     submitButton.textContent = "Submit";
-    submitButton.addEventListener("click", (event) => {
+    submitButton.addEventListener("click", async (event) => {
       event.preventDefault();
       const email = emailInput.value;
       const password = passwordInput.value;
-      this.login(email, password);
+
+      try {
+        const user = await this.login(email, password);
+        console.log(user);
+      } catch (error) {
+        console.error(error);
+      }
     });
     form.appendChild(submitButton);
 
