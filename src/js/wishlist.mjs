@@ -35,8 +35,8 @@ function wishlistItemTemplate(item) {
   if (isNaN(total_discount)) total_discount = 0;
   if (isNaN(total_price)) total_price = 0;
 
-  const newItem = `<li class='cart-card divider'>
-                    <a href='#' class='cart-card__image'>
+  const newItem = `<li class="cart-card divider">
+                    <a href="#" class="cart-card__image">
                     <img
                       src="${Images.PrimaryMedium}"
                       srcset="${Images.PrimarySmall} 350w,
@@ -50,15 +50,15 @@ function wishlistItemTemplate(item) {
                       alt="Image of ${Name}"
                     />
                     </a>
-                    <a href='#'>
-                      <h2 class='card__name'>${item.Name}</h2>
+                    <a href="#">
+                      <h2 class="card__name">${item.Name}</h2>
                     </a>
-                    <p class='cart-card__color'>${item.Colors[0].ColorName}</p>
-                    <p class='cart-card__quantity'>Quantity: ${quantity}</p>
-                    <p class='cart-card__price'>Unit Price: $${final_price}</p>
-                    <p class='cart-card__price'>Total: $${total_price}</p>
-                    <p class='saved'>Saved: $${total_discount}<p>
-                    <button class='add-to-cart-btn' onclick='addToCart(${item.Id})'>Add to Cart</button>
+                    <p class="cart-card__color">${item.Colors[0].ColorName}</p>
+                    <p class="cart-card__quantity">Quantity: ${quantity}</p>
+                    <p class="cart-card__price">Unit Price: $${final_price}</p>
+                    <p class="cart-card__price">Total: $${total_price}</p>
+                    <p class="saved">Saved: $${total_discount}<p>
+                    <button class="addToCart">Add to Cart</button>
                   </li>
                   `;
   return newItem;
