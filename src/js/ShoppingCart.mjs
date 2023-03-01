@@ -69,6 +69,15 @@ export default class ShoppingCart {
     }
 }
 
+export class ShoppingWishlistCart{
+  constructor(key, parentSelector) {
+    this.key = key;
+    this.parentSelector = parentSelector;
+    this.ShoppingWishlistCart = ShoppingWishlistCart;
+    }
+
+}
+
 export function sumTotal(cart) {
   let total = 0;
   cart.forEach(item => total += (item.FinalPrice * item.quantity));
