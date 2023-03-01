@@ -1,6 +1,6 @@
 import { loadHeaderFooter, numberItems } from "./utils.mjs";
 import ShoppingCart from "./ShoppingCart.mjs";
-import 
+import ShoppingWishCart from "./wishlist.mjs";
 
 loadHeaderFooter();
 numberItems("so-cart", ".numberCartItems");
@@ -10,7 +10,7 @@ const shoppingBag = new ShoppingCart("so-cart", ".product-list");
 shoppingBag.renderCartContents();
 
 
-const shoppingWishList = new ShoppingWishlistCart("so-wishlist", ".wishlist");
+const shoppingWishList = new ShoppingWishCart("so-wishlist", ".wishlist");
 
 shoppingWishList.renderWishlistContents();
 
