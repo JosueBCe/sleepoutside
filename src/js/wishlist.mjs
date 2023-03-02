@@ -1,37 +1,54 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 import { sumTotal } from "./ShoppingCart.mjs";
-import addToWishlist from "./ProductDetails.mjs";
-export default class ShoppingWishCart{
+import addToCart from "./ProductDetails.mjs";
+
+export default class ShoppingWishCart {
   constructor(key, parentSelector) {
     this.key = key;
     this.parentSelector = parentSelector;
   }
 
-  renderWishlistContents(){
+  renderWishlistContents() {
     const wishlistItems = getLocalStorage(this.key) || [];
     let wishlistTotal = document.querySelector(".wishlist-total");
-    if (wishlistTotal !== 0) { // Check if wishlistTotal is not null
+    if (wishlistTotal !== 0) {
       if (wishlistItems.length != 0) {
-        const htmlItems = wishlistItems.map((item) => wishlistItemTemplate(item));
-        document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
-        if (wishlistTotal !== null){
-          wishlistTotal.style.display = "block"; // Make appear the total paragraph that is hidden by default
-          wishlistTotal.innerHTML = `Total: $${sumTotal(wishlistItems).toFixed(2)}`;
+        const htmlItems = wishlistItems.map((item) =>
+          wishlistItemTemplate(item)
+        );
+        document.querySelector(this.parentSelector).innerHTML = htmlItems.join(
+          ""
+        );
+        if (wishlistTotal !== null) {
+          wishlistTotal.style.display = "block";
+          wishlistTotal.innerHTML = `Total: $${sumTotal(wishlistItems).toFixed(
+            2
+          )}`;
 
-          // Add event listeners to wishlist buttons
           const wishlistButtons = document.querySelectorAll(".wishlist-button");
-          wishlistButtons.forEach(button => {
+          wishlistButtons.forEach((button) => {
             button.addEventListener("click", () => {
               const itemId = button.dataset.id;
-              addToWishlist(itemId);
+              addToCart(itemId);
+              this.removeFromWishlist(itemId);
+              const updatedWishlistItems = getLocalStorage(this.key);
+              this.renderWishlistContents(updatedWishlistItems);
             });
           });
         }
       }
     }
   }
-}
 
+  removeFromWishlist(itemId) {
+    const wishlistItems = getLocalStorage(this.key) || [];
+    const updatedWishlistItems = wishlistItems.filter(
+      (item) => item.Id !== itemId
+    );
+    setLocalStorage(this.key, updatedWishlistItems);
+    this.renderWishlistContents(updatedWishlistItems);
+  }
+}
 
 function wishlistItemTemplate(item) {
   let final_price = Number(item.FinalPrice);
@@ -42,7 +59,6 @@ function wishlistItemTemplate(item) {
   let { Images, Name } = item;
   let total_price = Number(final_price * quantity).toFixed(2);
 
-  // Check if the quantity, total_discount, and total_price are valid numbers before displaying them
   if (isNaN(quantity)) quantity = 0;
   if (isNaN(total_discount)) total_discount = 0;
   if (isNaN(total_price)) total_price = 0;
@@ -65,9 +81,10 @@ function wishlistItemTemplate(item) {
                     <a href='#'>
                       <h2 class='card__name'>${item.Name}</h2>
                     </a>
-                    <p class='wishlist-cart-card__color'>${item.Colors[0].ColorName}</p>
+                    <p class='wishlist-cart-card__color'>${
+                      item.Colors[0].ColorName
+                    }</p>
                   </li>
                   `;
   return newItem;
 }
-
