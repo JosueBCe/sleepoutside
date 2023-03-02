@@ -16,16 +16,15 @@ export default class ShoppingWishCart {
         const htmlItems = wishlistItems.map((item) =>
           wishlistItemTemplate(item)
         );
-        const parentElement = document.querySelector(this.parentSelector);
-        parentElement.innerHTML = htmlItems.join("");
-        // Add CSS class to parent element
-        parentElement.classList.add("wishlist-container");
+        document.querySelector(this.parentSelector).innerHTML = htmlItems.join(
+          ""
+        );
         if (wishlistTotal !== null) {
           wishlistTotal.style.display = "block";
           wishlistTotal.innerHTML = `Total: $${sumTotal(wishlistItems).toFixed(
             2
           )}`;
-  
+
           const wishlistButtons = document.querySelectorAll(".wishlist-button");
           wishlistButtons.forEach((button) => {
             button.addEventListener("click", () => {
@@ -40,7 +39,6 @@ export default class ShoppingWishCart {
       }
     }
   }
-  
 
   removeFromWishlist(itemId) {
     const wishlistItems = getLocalStorage(this.key) || [];
@@ -86,7 +84,6 @@ function wishlistItemTemplate(item) {
                     <p class='wishlist-cart-card__color'>${
                       item.Colors[0].ColorName
                     }</p>
-                    <button class="add-to-cart" id="${item.Id}>Add to Cart</button>
                   </li>
                   `;
   return newItem;
