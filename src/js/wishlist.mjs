@@ -1,6 +1,6 @@
 import { getLocalStorage } from "./utils.mjs";
 import { sumTotal } from "./ShoppingCart.mjs";
-
+import addToWishlist from "./ProductDetails.mjs";
 export default class ShoppingWishCart{
   constructor(key, parentSelector) {
     this.key = key;
@@ -16,12 +16,22 @@ export default class ShoppingWishCart{
         document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
         if (wishlistTotal !== null){
           wishlistTotal.style.display = "block"; // Make appear the total paragraph that is hidden by default
-        wishlistTotal.innerHTML = `Total: $${sumTotal(wishlistItems).toFixed(2)}`
+          wishlistTotal.innerHTML = `Total: $${sumTotal(wishlistItems).toFixed(2)}`;
+
+          // Add event listeners to wishlist buttons
+          const wishlistButtons = document.querySelectorAll(".wishlist-button");
+          wishlistButtons.forEach(button => {
+            button.addEventListener("click", () => {
+              const itemId = button.dataset.id;
+              addToWishlist(itemId);
+            });
+          });
         }
       }
     }
   }
 }
+
 
 function wishlistItemTemplate(item) {
   let final_price = Number(item.FinalPrice);
