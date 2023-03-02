@@ -86,6 +86,7 @@ function wishlistItemTemplate(item) {
                     <p class='wishlist-cart-card__color'>${
                       item.Colors[0].ColorName
                     }</p>
+                    <button class="add-to-cart" id="${item.Id}>Add to Cart</button>
                   </li>
                   `;
   return newItem;
