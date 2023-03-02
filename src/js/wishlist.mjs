@@ -14,8 +14,10 @@ export default class ShoppingWishCart{
       if (wishlistItems.length != 0) {
         const htmlItems = wishlistItems.map((item) => wishlistItemTemplate(item));
         document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
-        wishlistTotal.style.display = "block"; // Make appear the total paragraph that is hidden by default
+        if (wishlistTotal !== null){
+          wishlistTotal.style.display = "block"; // Make appear the total paragraph that is hidden by default
         wishlistTotal.innerHTML = `Total: $${sumTotal(wishlistItems).toFixed(2)}`
+        }
       }
     }
   }
@@ -53,12 +55,6 @@ function wishlistItemTemplate(item) {
                     <a href="#">
                       <h2 class="card__name">${item.Name}</h2>
                     </a>
-                    <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-                    <p class="cart-card__quantity">Quantity: ${quantity}</p>
-                    <p class="cart-card__price">Unit Price: $${final_price}</p>
-                    <p class="cart-card__price">Total: $${total_price}</p>
-                    <p class="saved">Saved: $${total_discount}<p>
-                    <button class="addToCart">Add to Cart</button>
                   </li>
                   `;
   return newItem;
