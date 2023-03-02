@@ -122,6 +122,7 @@ export default class ProductDetails {
       productDetailsTemplate(this.product)
     );
   }
+  
 }
 
 function showSnackBar(message) {

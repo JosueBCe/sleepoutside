@@ -50,13 +50,13 @@ export default class ShoppingWishCart {
   }
 }
 
-function wishlistItemTemplate(item) {
-  let final_price = Number(item.FinalPrice);
-  let suggested_retail_price = Number(item.SuggestedRetailPrice);
+function wishlistItemTemplate(product) {
+  let final_price = Number(product.FinalPrice);
+  let suggested_retail_price = Number(product.SuggestedRetailPrice);
   let discount = Math.abs(final_price - suggested_retail_price).toFixed(2);
-  let quantity = Number(item.quantity);
+  let quantity = Number(product.quantity);
   let total_discount = (discount * quantity).toFixed(2);
-  let { Images, Name } = item;
+  let { Images, Name } = product;
   let total_price = Number(final_price * quantity).toFixed(2);
 
   if (isNaN(quantity)) quantity = 0;
@@ -79,11 +79,12 @@ function wishlistItemTemplate(item) {
                     />
                     </a>
                     <a href='#'>
-                      <h2 class='card__name'>${item.Name}</h2>
+                      <h2 class='card__name'>${product.Name}</h2>
                     </a>
                     <p class='wishlist-cart-card__color'>${
-                      item.Colors[0].ColorName
+                      product.Colors[0].ColorName
                     }</p>
+                    <button class="addToCart" data-id="${product.Id}>Add to Cart</button>
                   </li>
                   `;
   return newItem;
