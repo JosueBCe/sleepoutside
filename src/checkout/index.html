@@ -1,78 +1,138 @@
 <!DOCTYPE html>
-
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sleep Outside | Cedar Ridge Rimrock 2-person tent</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/checkout.js" type="module"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
+  <body class="bodyForm">
+    <header>
+      <h1 class="segment">Review &amp; Place your Order</h1>
+    </header>
+    <main>
+      <div class="formContainer">
+        <form name="checkout">
+          <fieldset>
+            <legend>Shipping Information</legend>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <label for="fname">
+              <input
+                type="text"
+                id="fname"
+                name="fname"
+                placeholder="First Name"
+                required
+              />
+            </label>
 
-  <title>Sleep Outside | Cedar Ridge Rimrock 2-person tent</title>
+            <label for="lname">
+              <input
+                type="text"
+                id="lname"
+                name="lname"
+                placeholder="Last Name"
+                required
+              />
+            </label>
+            <label for="street">
+              <input
+                type="text"
+                id="street"
+                name="street"
+                placeholder="Street Address"
+                required
+              />
+            </label>
 
-  <link rel="stylesheet" href="../css/style.css" />
+            <label for="city">
+              <input
+                type="text"
+                id="city"
+                name="city"
+                placeholder="City"
+                required
+              />
+            </label>
 
-  <script src="../js/CheckoutProcess.mjs" type="module"></script>
-  <script src="../js/cart.js" type="module"></script>
-</head>
+            <label for="state">
+              <input
+                type="text"
+                id="state"
+                name="state"
+                placeholder="State"
+                required
+              />
+            </label>
+            <label for="zip">
+              <input
+                type="text"
+                id="zip"
+                name="zip"
+                placeholder="Zip Code"
+                required
+              />
+            </label>
+          </fieldset>
 
-<body>
-  <header class="divider" id="main-header">
-    <span class="numberCartItems"></span>
-  </header>
-  <main class="divider">
-    <h1>Review &amp; Place your Order</h1>
-    <form>
-      <fieldset>
-        <legend>Shipping</legend>
-        <label for="first-name">First Name:</label>
-        <input type="text" id="first-name" name="first-name" required>
-        <br>
-        <label for="last-name">Last Name:</label>
-        <input type="text" id="last-name" name="last-name" required>
-        <br>
-        <label for="street">Street:</label>
-        <input type="text" id="street" name="street" required>
-        <br>
-        <label for="city">City:</label>
-        <input type="text" id="city" name="city" required>
-        <br>
-        <label for="state">State:</label>
-        <input type="text" id="state" name="state" required>
-        <br>
-        <label for="zip">Zip:</label>
-        <input type="text" id="zip" name="zip" required>
-        <br>
-      </fieldset>
-      <br>
-      <fieldset>
-        <legend>Payment Information</legend>
-        <label for="card-number">Credit Card Number:</label>
-        <input type="text" id="card-number" name="card-number" required>
-        <br>
-        <label for="expiration-date">Expiration Date:</label>
-        <input type="text" id="expiration-date" name="expiration-date" required>
-        <br>
-        <label for="security-code">Security Code:</label>
-        <input type="text" id="security-code" name="security-code" required>
-        <br>
-      </fieldset>
-      <fieldset>
-        <legend>Order Summary </legend>
-        <p id="subtotal-p">Item Subtotal </p><span id="subtotal-sum"></span>
-        <p>Shipping Estimate  <span id="shipping-estimate"></span></p>
-        <p>Tax  <span id="tax"></span></p>
-        <p><strong>Order Total</strong>  <span id="order-total"></span></p>
-      </fieldset>
-      <br>
-      <input type="submit" value="Submit">
-    </form>
-    
-  </main>
+          <fieldset class="fieldserPaymentInformation">
+            <legend>Payment Information</legend>
+            <label for="cardNumber">
+              <input
+                type="text"
+                id="cardNumber"
+                name="cardNumber"
+                placeholder="Credit Card Number"
+                required
+              />
+            </label>
 
+            <label for="expiration">
+              <input
+                type="text"
+                id="expiration"
+                name="expiration"
+                placeholder="Expiration Date"
+                required
+              />
+            </label>
 
-
+            <label for="code">
+              <input
+                type="text"
+                id="code"
+                name="code"
+                placeholder="Security Code"
+                required
+              />
+            </label>
   <footer id="main-footer"></footer>
 
-</body>
-
+            <button id="checkoutSubmit" type="submit">Place Order</button>
+          </fieldset>
+        </form>
+        <div class="checkout-summary">
+          <h3>Order Summary</h3>
+          <div>
+            <p>Item Subtotal: (<span id="num-items"></span>)</p>
+            <p id="cartTotal">$</p>
+          </div>
+          <div>
+            <p for="shipping">Shipping Estimate</p>
+            <p id="shipping">$</p>
+          </div>
+          <div>
+            <p>Tax</p>
+            <p id="tax">$</p>
+          </div>
+          <div class="totalOrderContainer">
+            <p><b>Total Order</b></p>
+            <p id="orderTotal">$</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>

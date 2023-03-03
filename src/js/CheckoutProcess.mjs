@@ -1,7 +1,33 @@
 import { sumTotal } from "./ShoppingCart.mjs";
-import { getLocalStorage } from "./utils.mjs";
-import { numberItems } from "./utils.mjs";
-import { calculateShippingCost } from "./utils.mjs";
+import { getLocalStorage, numberItems, calculateShippingCost, setLocalStorage, alertMessage, removeAllAlerts } from "./utils.mjs";
+import ExternalServices from "./ExternalServices.mjs";
+
+// Takes a form element and returns an object where the key is the "name" of the form input.
+const services = new ExternalServices();
+function formDataToJSON(formElement) {
+    const formData = new FormData(formElement),
+    convertedJSON = {};
+    formData.forEach(function (value, key) {
+    convertedJSON[key] = value;
+    });
+
+    return convertedJSON;
+}
+
+// Takes the items currently stored in the cart (localstorage) and returns them in a simplified form.
+function packageItems(items) {
+    // Convert the list of products from localStorage to the simpler form required for the checkout process. Array.map would be perfect for this.
+    const simplifiedItems = items.map((item) => {
+        console.log(item);
+        return {
+            id: item.Id,
+            price: item.FinalPrice,
+            name: item.Name,
+            quantity: item.quantity,
+        };
+    });
+    return simplifiedItems;
+}
 
 export default class CheckoutProcess {
     constructor(key, outputSelector) {
@@ -19,13 +45,11 @@ export default class CheckoutProcess {
     }
     calculateItemSummary() {
         // calculate and display the total amount of the items in the cart, and the number of items.
-        console.log(this.list)
+        // console.log(this.list)
         this.itemTotal = `${sumTotal(this.list).toFixed(2)}`
-        document.querySelector("#subtotal-sum").innerHTML += `<strong>${this.itemTotal}<strong/>`
-        numberItems(this.key, "#subtotal-p")
-        console.log(numberItems(this.key))
-
-        
+        document.querySelector("#cartTotal").innerHTML += `<strong>${this.itemTotal}<strong/>`
+        numberItems(this.key, "#num-items")
+        // console.log(numberItems(this.key))
     }
     calculateOrdertotal() {
         // calculate the shipping and tax amounts. Then use them to along with the cart total to figure out the order total
@@ -37,14 +61,33 @@ export default class CheckoutProcess {
     }
     displayOrderTotals() {
         // once the totals are all calculated display them in the order summary page
-            document.getElementById("shipping-estimate").innerHTML += `<strong>${this.shipping }<strong/>`
-            document.getElementById("tax").innerHTML += `<strong>${this.tax}<strong/>`
-            document.getElementById("order-total").innerHTML += `<strong>${this.orderTotal.toFixed(2)}<strong/>`
+            document.getElementById("shipping").innerHTML += `<strong>${this.shipping }<strong/>`
+            document.getElementById("tax").innerHTML += `<strong>${this.tax.toFixed(2)}<strong/>`
+            document.getElementById("orderTotal").innerHTML += `<strong>${this.orderTotal.toFixed(2)}<strong/>`
         }
-
+    async checkout() {
+        const formElement = document.forms["checkout"];
+        const json = formDataToJSON(formElement);
+        // Add totals, and item details
+        json.orderDate = new Date();
+        json.orderTotal = this.orderTotal;
+        json.tax = this.tax;
+        json.shipping = this.shipping;
+        json.items = packageItems(this.list);
+        
+        try {
+            const res = await services.checkout(json);
+            console.log(res);
+            setLocalStorage("so-cart", []);
+            location.assign("/checkout/success.html");
+        } catch (err) {
+            // Get rid of any preexisting alerts.
+            removeAllAlerts();
+            const jsonResponse = await err.message;
+            for (let message in jsonResponse) {
+                alertMessage(jsonResponse[message]);
+            }
+            console.log(err);
+        }
+    }
 }
-
-let check = new CheckoutProcess("so-cart", "#order-total")
-check.init()
-
-check.calculateOrdertotal()
