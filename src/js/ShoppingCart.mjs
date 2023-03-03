@@ -1,6 +1,6 @@
 import { getLocalStorage } from "./utils.mjs";
 
-function cartItemTemplate(item) {
+export function cartItemTemplate(item) {
   let final_price = Number(item.FinalPrice);
   let suggested_retail_price = Number(item.SuggestedRetailPrice);
   let discount = Math.abs(final_price - suggested_retail_price).toFixed(2);
