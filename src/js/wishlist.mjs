@@ -1,5 +1,6 @@
 import { getLocalStorage } from "./utils.mjs";
 import { sumTotal } from "./ShoppingCart.mjs";
+import { shoppingBag } from "./cart.js";
 
 export default class ShoppingWishCart{
   constructor(key, parentSelector) {
@@ -37,27 +38,35 @@ function wishlistItemTemplate(item) {
   if (isNaN(total_discount)) total_discount = 0;
   if (isNaN(total_price)) total_price = 0;
 
-  const newItem = `<li class="wishlist-cart-card divider">
-                    <a href="#" class="wishlist-cart-card__image">
-                    <img
-                      src="${Images.PrimaryMedium}"
-                      srcset="${Images.PrimarySmall} 350w,
-                              ${Images.PrimaryMedium} 850w,
-                              ${Images.PrimaryLarge} 1350w,
-                              ${Images.PrimaryExtraLarge} 1900w"
-                      sizes="(max-width: 350px) 320px,
-                            (max-width: 850px) 768px,
-                            (max-width: 1350px) 1200px,
-                            1900px"
-                      alt="Image of ${Name}"
-                    />
-                    </a>
-                    <a href="../product_pages/index.html?product=${item.Id}">
-                      <h2 class="wishlist-card__name">${item.Name}</h2>
-                      <button class="add-to-cart" id="${item.Id}>Add to Cart</button>
-                    </a>
-                  </li>
-                  `;
+  const newItem = document.createElement("li");
+  newItem.classList.add("wishlist-cart-card", "divider");
+  newItem.innerHTML = `<a href="#" class="wishlist-cart-card__image">
+                          <img
+                            src="${Images.PrimaryMedium}"
+                            srcset="${Images.PrimarySmall} 350w,
+                                    ${Images.PrimaryMedium} 850w,
+                                    ${Images.PrimaryLarge} 1350w,
+                                    ${Images.PrimaryExtraLarge} 1900w"
+                            sizes="(max-width: 350px) 320px,
+                                  (max-width: 850px) 768px,
+                                  (max-width: 1350px) 1200px,
+                                  1900px"
+                            alt="Image of ${Name}"
+                          />
+                        </a>
+                        <a href="">
+                          <h2 class="wishlist-card__name">${item.Name}</h2>
+                          <p>
+                            <button class="product-list" data-id="${item.ID}">Add to Cart</button>
+                          </p>
+                        </a>`;
+  const addButton = newItem.querySelector(".product-list");
+  addButton.addEventListener("click", () => {
+    shoppingBag.addProduct(item.ID, item.quantity);
+  });
+
   return newItem;
 }
+
+
 
