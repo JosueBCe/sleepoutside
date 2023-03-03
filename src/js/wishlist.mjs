@@ -1,7 +1,6 @@
 import { getLocalStorage } from "./utils.mjs";
 import { sumTotal } from "./ShoppingCart.mjs";
 
-
 export default class ShoppingWishCart{
   constructor(key, parentSelector) {
     this.key = key;
@@ -56,12 +55,12 @@ function wishlistItemTemplate(item) {
                     
                     <a>
                       <h2 class="wishlist-card__name">${item.Name}</h2>
-                      <p><button id="add">Add to Cart</button></p>
+                      <p><button id="addCart" data-product="${JSON.stringify(item)}">Add to Cart</button></p>
                     </a>
                     
                   </li>
                   `;
-  return newItem;
+    return newItem;
 }
 
 
