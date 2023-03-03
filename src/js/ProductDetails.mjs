@@ -1,5 +1,7 @@
 import { getLocalStorage, setLocalStorage, numberItems } from "./utils.mjs";
 import Alert from "./alert.js";
+import ShoppingWishCart from "./wishlist.mjs";
+import { sumTotal } from "./ShoppingCart.mjs";
 
 export function productDetailsTemplate(product) {
   let final_price = Number(product.FinalPrice)
@@ -28,11 +30,13 @@ export function productDetailsTemplate(product) {
           </section>`;
 }
 
+
 export default class ProductDetails {
   constructor(productId, dataSource) {
     this.productId = productId;
     this.product = {};
     this.dataSource = dataSource;
+    this.wishlist = new ShoppingWishCart("so-wishlist", ".wishlist-items");
   }
   async init() {
     // use our datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
@@ -46,9 +50,10 @@ export default class ProductDetails {
       .addEventListener("click", this.addToCart.bind(this));
     
     document
-     .getElementById("addToWishlist")
-     .addEventListener("click", this.addToWishlist.bind(this));
+      .getElementById("addToWishlist")
+      .addEventListener("click", this.addToWishlist.bind(this));
   }
+  
   addToCart() {
     
     numberItems("so-cart", ".numberCartItems");
@@ -63,7 +68,6 @@ export default class ProductDetails {
     }, 1500); 
 
     
-
     let Data = getLocalStorage("so-cart");
     if (Data) {
       let tent = 1;
@@ -85,35 +89,7 @@ export default class ProductDetails {
       Data.push(this.product);
     }
     setLocalStorage("so-cart", Data);
-
-    
   }
-
-
-  addToWishlist() {
-    
-    let Data = getLocalStorage("so-wishlist");
-    if (!Data) {
-      Data = [];
-    }
-
-    let tent = 1;
-    for (let i = 0; i < Data.length; i++) {
-      if (Data[i].Id == this.product.Id) {
-        tent = 0;
-        break;
-      }
-    }
-
-    if (tent == 1) {
-      Data.push(this.product);
-      setLocalStorage("so-wishlist", Data);
-      showSnackBar("1 item added to wishlist");
-    } else {
-      showSnackBar("Item already in wishlist");
-    }
-  }
-
 
   renderProductDetails(selector) {
     const element = document.querySelector(selector);
@@ -122,7 +98,24 @@ export default class ProductDetails {
       productDetailsTemplate(this.product)
     );
   }
-  
+
+
+
+  addToWishlist() {
+    let wishlistItems = getLocalStorage("so-wishlist") || [];
+    let alreadyInWishlist = false;
+    for (let i = 0; i < wishlistItems.length; i++) {
+      if (wishlistItems[i].Id === this.product.Id) {
+        alreadyInWishlist = true;
+        break;
+      }
+    }
+    if (!alreadyInWishlist) {
+      wishlistItems.push(this.product);
+      localStorage.setItem("so-wishlist", JSON.stringify(wishlistItems));
+      this.wishlist.renderWishlistContents();
+    }
+  }
 }
 
 function showSnackBar(message) {
