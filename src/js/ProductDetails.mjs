@@ -52,11 +52,10 @@ export default class ProductDetails {
       .getElementById("addToWishlist")
       .addEventListener("click", this.addToWishlist.bind(this));
     
-    const wishlist = new ShoppingWishCart("so-wishlist", ".wishlist-cart__items");
-    wishlist.renderWishlistContents(wishlist.renderWishlistContents(wishlist));
+
   }
   
-  addToCart() {
+    addToCart() {
     
     numberItems("so-cart", ".numberCartItems");
 
@@ -104,23 +103,32 @@ export default class ProductDetails {
 
 
   addToWishlist() {
-    let wishlistItems = getLocalStorage("so-wishlist") || [];
-    let alreadyInWishlist = false;
-    for (let i = 0; i < wishlistItems.length; i++) {
-      if (wishlistItems[i].Id === this.product.Id) {
-        alreadyInWishlist = true;
+    
+    let Data = getLocalStorage("so-wishlist");
+    if (!Data) {
+      Data = [];
+    }
+
+    let tent = 1;
+    for (let i = 0; i < Data.length; i++) {
+      if (Data[i].Id == this.product.Id) {
+        tent = 0;
         break;
       }
     }
-    if (!alreadyInWishlist) {
-      wishlistItems.push(this.product);
-      localStorage.setItem("so-wishlist", JSON.stringify(wishlistItems));
-      this.wishlist.renderWishlistContents();
+
+    if (tent == 1) {
+      Data.push(this.product);
+      setLocalStorage("so-wishlist", Data);
+      showSnackBar("1 item added to wishlist");
+    } else {
+      showSnackBar("Item already in wishlist");
     }
   }
 }
 
-function showSnackBar(message) {
+
+export function showSnackBar(message) {
   const snackbar = document.getElementById("snackbar");
   snackbar.textContent = message;
   snackbar.classList.add("show");

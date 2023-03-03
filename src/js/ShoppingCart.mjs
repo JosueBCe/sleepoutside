@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage} from "./utils.mjs";
 
 export function cartItemTemplate(item) {
   let final_price = Number(item.FinalPrice);
@@ -49,12 +49,14 @@ export default class ShoppingCart {
     constructor(key, parentSelector) {
       this.key = key;
       this.parentSelector = parentSelector;
+      this.addButton = document.querySelector("#addCart");
     }
     // renderCartContents() {
     //   const cartItems = getLocalStorage(this.key);
     //   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     //   document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
     // }
+    
     renderCartContents() {
       const cartItems = getLocalStorage(this.key) || [];
       let cartTotal = document.querySelector(".cart-total")
