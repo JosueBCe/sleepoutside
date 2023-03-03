@@ -5,7 +5,7 @@ import ShoppingWishCart from "./wishlist.mjs";
 loadHeaderFooter();
 numberItems("so-cart", ".numberCartItems");
 
-const shoppingBag = new ShoppingCart("so-cart", ".product-list");
+export const shoppingBag = new ShoppingCart("so-cart", ".product-list");
 
 shoppingBag.renderCartContents();
 
