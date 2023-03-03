@@ -36,7 +36,6 @@ export default class ProductDetails {
     this.productId = productId;
     this.product = {};
     this.dataSource = dataSource;
-    this.wishlist = new ShoppingWishCart("so-wishlist", ".wishlist-items");
   }
   async init() {
     // use our datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
@@ -52,6 +51,9 @@ export default class ProductDetails {
     document
       .getElementById("addToWishlist")
       .addEventListener("click", this.addToWishlist.bind(this));
+    
+    const wishlist = new ShoppingWishCart("so-wishlist", ".wishlist-cart__items");
+    wishlist.renderWishlistContents(wishlist.renderWishlistContents(wishlist));
   }
   
   addToCart() {
