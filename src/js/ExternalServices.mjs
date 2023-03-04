@@ -18,7 +18,7 @@ export default class ExternalServices {
 
   async getData(category) {
 
-    // http://server-nodejs.cit.byui.edu:3000/products/search/tents
+    // https://wdd330-backend.onrender.com/products/search/tents
 
     const response = await fetch(baseURL + `products/search/${category}`);
     const data = await convertToJson(response);
@@ -33,7 +33,7 @@ export default class ExternalServices {
   
   async findProductById(id) {
 
-    // http://server-nodejs.cit.byui.edu:3000/product/989CH
+    // https://wdd330-backend.onrender.com/product/989CH
     
     const response = await fetch(baseURL + `product/${id}`);
     const data = await convertToJson(response);
@@ -57,7 +57,7 @@ export default class ExternalServices {
     return await fetch(baseURL + "checkout/", options).then(convertToJson);
   }
 
-  async loginRequest(email, password,apiUrl) {
+  async loginRequest(email, password, apiUrl) {
 
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -85,10 +85,7 @@ export default class ExternalServices {
         Authorization: `Bearer ${token}`,
       },
     };
-    const response = await fetch(baseURL + "orders", options).then(
-      convertToJson
-    );
+    const response = await fetch(baseURL + "orders", options).then(convertToJson);
     return response;
   }
-  
 }

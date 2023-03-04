@@ -1,44 +1,40 @@
 <!DOCTYPE html>
 
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-  <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sleep Outside | Cedar Ridge Rimrock 2-person tent</title>
 
-  <title>Sleep Outside | Cedar Ridge Rimrock 2-person tent</title>
+    <link rel="stylesheet" href="../css/style.css" />
 
-  <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/CheckoutProcess.mjs" type="module"></script>
+    <script src="../js/cart.js" type="module"></script>
+  </head>
 
-  <script src="../js/CheckoutProcess.mjs" type="module"></script>
-  <script src="../js/cart.js" type="module"></script>
-</head>
+  <body>
+    <header class="divider" id="main-header">
+      <span class="numberCartItems"></span>
+    </header>
+    <main class="divider">
+      <h1>Login</h1>
+      <form action="/registration" method="post" enctype="multipart/form-data">
+        <fieldset>
+          <legend>Personal Information</legend>
 
-<body>
-  <header class="divider" id="main-header">
-    <span class="numberCartItems"></span>
-  </header>
-  <main class="divider">
-  <h1>Login</h1>
-	<form action="/registration" method="post" enctype="multipart/form-data">
-    <fieldset>
-      <legend>Personal Information</legend>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required /><br />
 
-		<label for="email">Email:</label>
-		<input type="email" id="email" name="email" required><br>
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required /><br />
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required><br>
-    
-		<input type="submit" value="Submit">
-    </fieldset>
+          <input type="submit" value="Submit" />
+        </fieldset>
+      </form>
+    </main>
 
-	</form>
-</main>
-
-<footer id="main-footer"></footer>
-
-</body>
-
+    <footer id="main-footer"></footer>
+  </body>
 </html>

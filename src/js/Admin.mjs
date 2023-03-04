@@ -22,22 +22,26 @@ export class Admin {
   
     showLogin() {
       // build the login form in the main element
-      const form = `
-        <form class="login-form">
-          <label>Email:</label>
-          <input type="email" name="email" value="user1@email.com"><br>
-          <label>Password:</label>
-          <input type="password" name="password" value="user1"><br>
-          <input type="submit" value="Login">
-        </form>
-      `;
-  
+
+      const form = `<form class="logInUp">
+                      <fieldset>
+                        <legend>Personal Information</legend>
+
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" value="user1@email.com" required><br>
+
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" value="user1" required><br>
+                        
+                        <button class="loginButton" type="submit" value="Login">Login</button>
+                      </fieldset>
+                    </form>`;
+
       // add the form to the main element of the page
-      const mainElement = document.querySelector(".login");
-      mainElement.innerHTML = form;
+      this.mainElement.innerHTML = form;
   
       // add event listener to submit button
-      const submitButton = document.querySelector("input[type='submit']");
+      const submitButton = document.querySelector("button[type='submit']");
       submitButton.addEventListener("click", async (event) => {
         // prevent default form submission behavior
         event.preventDefault();
@@ -48,11 +52,49 @@ export class Admin {
   
         // call login method
         await this.login(email, password);
-        await this.consoleData()
+        this.consoleData();
       });
     }
-    consoleData(){
-        console.log(this.services.getOrders(this.token))
+    
+    async consoleData(){
+      try {
+        const orders = await this.services.getOrders(this.token);
+        // console.log(orders);
+
+        this.mainElement.innerHTML = orderTemplate();
+        const parent = document.querySelector("#orders tbody");
+
+
+        parent.innerHTML = orders
+          .map(
+            (order) =>
+              `<tr class="listOrders">
+                  <td>${order.id}</td>
+                  <td>${new Date(order.orderDate).toLocaleDateString("en-US")}</td>
+                  <td>${order.items.length}</td>
+                  <td>$ ${order.orderTotal}</td>
+              </tr>`
+          )
+        .join("");
+      } catch (err) {
+        console.log(err);
+      }
     }
   }
   
+  // test
+  function orderTemplate() {
+    return `<h2 class="currentOrder">Current Orders</h2>
+
+            <table id="orders">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Date</th>
+                  <th>#Items</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody class="order-body"></tbody>
+            </table>`;
+  }

@@ -15,7 +15,6 @@ export default class Alert {
       setTimeout(function () {
         div.className = div.className.replace("show", "");
       }, 3000); // After 3 seconds, remove the show class from DIV
-      // window.location.reload();
     }
   }
 }
