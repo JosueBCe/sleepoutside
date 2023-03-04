@@ -12,7 +12,7 @@ export default class ShoppingWishCart{
     let wishlistTotal = document.querySelector(".wishlist-total");
     if (wishlistTotal !== 0) { // Check if wishlistTotal is not null
       if (wishlistItems.length != 0) {
-        const htmlItems = wishlistItems.map((item) => wishlistItemTemplate(item));
+        const htmlItems = wishlistItems.map((product) => wishlistItemTemplate(product));
         document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
         if (wishlistTotal !== null){
           wishlistTotal.style.display = "block"; // Make appear the total paragraph that is hidden by default
@@ -21,15 +21,22 @@ export default class ShoppingWishCart{
       }
     }
   }
+  renderWishlistItem(selector) {
+    const element = document.querySelector(selector);
+    element.insertAdjacentHTML(
+      "afterBegin",
+      wishlistItemTemplate(this.product)
+    );
+  }  
 }
 
-function wishlistItemTemplate(item) {
-  let final_price = Number(item.FinalPrice);
-  let suggested_retail_price = Number(item.SuggestedRetailPrice);
+function wishlistItemTemplate(product) {
+  let final_price = Number(product.FinalPrice);
+  let suggested_retail_price = Number(product.SuggestedRetailPrice);
   let discount = Math.abs(final_price - suggested_retail_price).toFixed(2);
-  let quantity = Number(item.quantity);
+  let quantity = Number(product.quantity);
   let total_discount = (discount * quantity).toFixed(2);
-  let { Images, Name } = item;
+  let { Images, Name } = product;
   let total_price = Number(final_price * quantity).toFixed(2);
 
   // Check if the quantity, total_discount, and total_price are valid numbers before displaying them
@@ -54,13 +61,14 @@ function wishlistItemTemplate(item) {
                     </a>
                     
                     <a>
-                      <h2 class="wishlist-card__name">${item.Name}</h2>
-                      <p><button id="addCart" data-product="${item}">Add to Cart</button></p>
+                      <h2 class="wishlist-card__name">${product.Name}</h2>
+                      <button id="addCart" data-id="${product.Id}">Add To Cart</button>
                     </a>
-                    
                   </li>
                   `;
     return newItem;
 }
+
+
 
 

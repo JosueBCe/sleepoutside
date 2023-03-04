@@ -52,7 +52,7 @@ export default class ProductDetails {
       .getElementById("addToWishlist")
       .addEventListener("click", this.addToWishlist.bind(this));
     
-
+      
   }
   
     addToCart() {
