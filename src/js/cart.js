@@ -9,7 +9,6 @@ export const shoppingBag = new ShoppingCart("so-cart", ".product-list");
 
 export const shoppingBags = shoppingBag.renderCartContents();
 
-
 const shoppingWishList = new ShoppingWishCart("so-wishlist", ".wishlist");
 
 shoppingWishList.renderWishlistContents();

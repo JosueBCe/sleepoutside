@@ -62,7 +62,7 @@ function wishlistItemTemplate(product) {
                     
                     <a>
                       <h2 class="wishlist-card__name">${product.Name}</h2>
-                      <button id="addCart" data-id="${product.Id}">Add To Cart</button>
+                      <button class="add-to-cart" data-id="${product.Id}">Add To Cart</button>
                     </a>
                   </li>
                   `;
