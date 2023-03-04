@@ -1,7 +1,4 @@
 import { getLocalStorage, setLocalStorage, numberItems } from "./utils.mjs";
-import Alert from "./alert.js";
-import ShoppingWishCart from "./wishlist.mjs";
-import { sumTotal } from "./ShoppingCart.mjs";
 
 export function productDetailsTemplate(product) {
   let final_price = Number(product.FinalPrice)
@@ -51,12 +48,7 @@ export default class ProductDetails {
     document
       .getElementById("addToWishlist")
       .addEventListener("click", this.addToWishlist.bind(this));
-    document
-      .getElementById("addTocart")
-      .addEventListener("click", ()=> {
-        const wishlistCart = new ShoppingWishCart("wishlist", ".wishlist__items");
-        wishlistCart.moveToCart(this.productId);
-      });
+    
       
   }
   
