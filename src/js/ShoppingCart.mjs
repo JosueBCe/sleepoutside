@@ -1,4 +1,6 @@
-import { getLocalStorage} from "./utils.mjs";
+import { getLocalStorage, setLocalStorage} from "./utils.mjs";
+
+
 
 export function cartItemTemplate(item) {
   let final_price = Number(item.FinalPrice);
