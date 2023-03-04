@@ -332,7 +332,8 @@ span.rise-shake {
 }
 
 /* NEWSLETTER SUBSCRIPTION */
-#newsletter-signup, .login-form {
+#newsletter-signup,
+.login-form {
   padding: 1rem 1rem 0.1rem 1rem;
   margin: 1rem;
   border: 1px solid #ccc;
@@ -436,6 +437,9 @@ input#email {
 #buttonVisit:hover,
 #register:hover,
 #buttonError:hover,
+.loginButton:hover,
+.login-btn:hover,
+.checkout-btn:hover,
 .carouselButton button:hover {
   background-color: #525b0fc9;
   transition: all ease-in-out 0.3s;
@@ -565,7 +569,9 @@ footer {
   margin: 1rem;
   max-width: 100%;
 }
-#checkoutButton {
+#checkoutButton,
+.checkout-btn,
+.login-btn {
   background-color: #525b0f;
   color: white;
   border: none;
@@ -579,7 +585,9 @@ footer {
   background-color: #525b0fc9;
   transition: all ease-in-out 0.3s;
 }
-#checkoutButton a {
+#checkoutButton a,
+.checkout-btn a,
+.login-btn a {
   color: white;
   text-decoration: none;
 }
@@ -715,6 +723,9 @@ div.totalOrderContainer {
 }
 
 #buttonError,
+.loginButton,
+.checkout-btn,
+.login-btn,
 .messageError {
   margin: 1rem;
   font-size: 1.5rem;
@@ -989,4 +1000,51 @@ div.totalOrderContainer {
 
 .slides {
   width: 300px;
+}
+
+#orders {
+  margin: 0 auto;
+  background-color: var(--light-grey);
+}
+
+#orders th,
+.listOrders td,
+.currentOrder {
+  text-align: center;
+  padding: 2rem;
+  font-size: 2rem;
+}
+
+.listOrders td {
+  background-color: var(--secondary-color);
+  color: var(--color-white);
+}
+
+.logInUp {
+  margin: 5rem auto;
+}
+
+.logInUp fieldset {
+  padding: 2rem;
+}
+
+.userID {
+  display: flex;
+}
+
+.loginButton {
+  margin: 2rem auto;
+}
+
+.logInUp input {
+  padding: 1rem;
+}
+
+.userMessage {
+  background-color: var(--secondary-color);
+  padding: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  display: none;
 }
