@@ -8,12 +8,12 @@ export function cartItemTemplate(item) {
   let total_discount = (discount * quantity).toFixed(2);
   let { Images, Name } = item;
   let total_price = Number(final_price * quantity).toFixed(2);
-
+  
   // Check if the quantity, total_discount, and total_price are valid numbers before displaying them
   if (isNaN(quantity)) quantity = 0;
   if (isNaN(total_discount)) total_discount = 0;
   if (isNaN(total_price)) total_price = 0;
-
+  
   const newItem = `<li class='cart-card divider'>
                     <a href='#' class='cart-card__image'>
                     <img
@@ -40,8 +40,8 @@ export function cartItemTemplate(item) {
                   </li>
                   `;
   return newItem;
-}
-
+  
+};
 
 
 
@@ -49,8 +49,9 @@ export default class ShoppingCart {
     constructor(key, parentSelector) {
       this.key = key;
       this.parentSelector = parentSelector;
-      this.addButton = document.querySelector("#addCart");
-    }
+      
+    } 
+    
     // renderCartContents() {
     //   const cartItems = getLocalStorage(this.key);
     //   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
