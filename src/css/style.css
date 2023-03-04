@@ -1045,9 +1045,8 @@ div.totalOrderContainer {
   border-radius: 10px;
 }
 .add-to-cart{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  background-color: #525b0f;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
 }

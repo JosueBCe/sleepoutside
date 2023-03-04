@@ -13,10 +13,11 @@ export default class WishlistDetails {
     // once we have the product details we can render out the HTML
     this.renderWishlistItem("main");
     document
-     .getElementById("addCart")
+     .querySelector(".add-to-cart")
      .addEventListener("click", this.addToWishlist.bind(this));
+     
   }
-  async addToWishlist() {
+  addToWishlist() {
     
     let Data = getLocalStorage("so-wishlist");
     if (!Data) {
