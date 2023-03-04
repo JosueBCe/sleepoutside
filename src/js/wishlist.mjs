@@ -56,6 +56,7 @@ function wishlistItemTemplate(product) {
                     <a>
                       <h2 class="wishlist-card__name">${product.Name}</h2>
                       <button class="add_to_wishcart" data-product="${product.Id}">Add to Cart</button>
+                      
                     </a>
                     
                   </li>
