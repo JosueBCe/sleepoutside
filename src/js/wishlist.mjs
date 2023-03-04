@@ -1,11 +1,33 @@
-import { getLocalStorage } from "./utils.mjs";
-import { sumTotal } from "./ShoppingCart.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { sumTotal, ShoppingCart } from "./ShoppingCart.mjs";
+
 
 export default class ShoppingWishCart{
   constructor(key, parentSelector) {
     this.key = key;
     this.parentSelector = parentSelector;
   }
+
+  moveToCart(productId) {
+    // Get the item to move from the wishlist
+    const wishlistItems = getLocalStorage(this.key) || [];
+    const itemToMove = wishlistItems.find(item => item.Id === productId);
+    if (!itemToMove) {
+      console.error(`Item with productId ${productId} not found in wishlist`);
+      return;
+    }
+  
+    // Remove the item from the wishlist
+    const updatedWishlist = wishlistItems.filter(item => item.Id !== productId);
+    setLocalStorage(this.key, updatedWishlist);
+    this.renderWishlistContents();
+  
+    // Add the item to the cart
+    const cart = new ShoppingCart("cart", ".shopping-cart__items");
+    cart.addItem(itemToMove);
+  }
+
+
 
   renderWishlistContents(){
     const wishlistItems = getLocalStorage(this.key) || [];
@@ -62,5 +84,6 @@ function wishlistItemTemplate(product) {
                   `;
     return newItem;
 }
+
 
 

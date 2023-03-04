@@ -51,7 +51,12 @@ export default class ProductDetails {
     document
       .getElementById("addToWishlist")
       .addEventListener("click", this.addToWishlist.bind(this));
-    
+    document
+      .getElementById("addTocart")
+      .addEventListener("click", ()=> {
+        const wishlistCart = new ShoppingWishCart("wishlist", ".wishlist__items");
+        wishlistCart.moveToCart(this.productId);
+      });
       
   }
   
