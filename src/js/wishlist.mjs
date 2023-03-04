@@ -21,13 +21,6 @@ export default class ShoppingWishCart{
       }
     }
   }
-  renderWishlistItem(selector) {
-    const element = document.querySelector(selector);
-    element.insertAdjacentHTML(
-      "afterBegin",
-      wishlistItemTemplate(this.product)
-    );
-  }  
 }
 
 function wishlistItemTemplate(product) {
@@ -62,13 +55,12 @@ function wishlistItemTemplate(product) {
                     
                     <a>
                       <h2 class="wishlist-card__name">${product.Name}</h2>
-                      <button class="add-to-cart" data-id="${product.Id}">Add To Cart</button>
+                      <button id="addCart" data-product="${product.Id}">Add to Cart</button>
                     </a>
+                    
                   </li>
                   `;
     return newItem;
 }
-
-
 
 
