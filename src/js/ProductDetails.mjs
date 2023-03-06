@@ -1,4 +1,5 @@
 import { getLocalStorage, setLocalStorage, numberItems } from "./utils.mjs";
+import { wishlistItemTemplate } from "./wishlist.mjs";
 
 export function productDetailsTemplate(product) {
   let final_price = Number(product.FinalPrice)
@@ -54,6 +55,7 @@ export default class ProductDetails {
   
     addToCart() {
     
+    
     numberItems("so-cart", ".numberCartItems");
 
     // The cart will shake to indicate something has been added to the cart
@@ -101,6 +103,8 @@ export default class ProductDetails {
 
   addToWishlist() {
     
+    
+
     let Data = getLocalStorage("so-wishlist");
     if (!Data) {
       Data = [];

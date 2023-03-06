@@ -1,5 +1,6 @@
 import { getLocalStorage } from "./utils.mjs";
 import { sumTotal } from "./ShoppingCart.mjs";
+import { shoppingBag } from "./cart.js";
 
 export default class ShoppingWishCart{
   constructor(key, parentSelector) {
@@ -8,6 +9,7 @@ export default class ShoppingWishCart{
   }
 
   renderWishlistContents(){
+    
     const wishlistItems = getLocalStorage(this.key) || [];
     let wishlistTotal = document.querySelector(".wishlist-total");
     if (wishlistTotal !== 0) { // Check if wishlistTotal is not null
@@ -23,7 +25,7 @@ export default class ShoppingWishCart{
   }
 }
 
-function wishlistItemTemplate(product) {
+export function wishlistItemTemplate(product) {
   let final_price = Number(product.FinalPrice);
   let suggested_retail_price = Number(product.SuggestedRetailPrice);
   let discount = Math.abs(final_price - suggested_retail_price).toFixed(2);
@@ -31,6 +33,7 @@ function wishlistItemTemplate(product) {
   let total_discount = (discount * quantity).toFixed(2);
   let { Images, Name } = product;
   let total_price = Number(final_price * quantity).toFixed(2);
+
 
   // Check if the quantity, total_discount, and total_price are valid numbers before displaying them
   if (isNaN(quantity)) quantity = 0;
