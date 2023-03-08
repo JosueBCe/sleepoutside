@@ -21,7 +21,8 @@ export function productCarousel(product) {
   let imagesFile = [];
 
   for (let i = 0; i < product.Colors.length; i++) {
-    imagesFile.push(`<img src=${product.Colors[i].ColorPreviewImageSrc}>`);
+    imagesFile.push(`<img src=${product.Colors[i].ColorPreviewImageSrc}>
+                     <p> ${product.Colors[i].ColorName} </p>`);
   }
 
   const slideHTML = generateSlideHTML(imagesFile);

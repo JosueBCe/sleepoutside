@@ -19,10 +19,9 @@ function productDetailsTemplate(product) {
           <p class="product-card__price">Now! $${final_price}</p>
           <p class="product-card__retail_price">Before: $${suggested_retail_price}</p>
           <p class="product-card__description saved">You're Saving $${discount}</p>
-          <p class="product__color">${product.Colors[0].ColorName}</p>
-          <p class="product__description">
-          ${product.DescriptionHtmlSimple}
-          </p>
+          <br> <hr>
+          <p class="product__description">${product.DescriptionHtmlSimple}</p>
+          <hr> <br>
           <div class="product-detail__add">
             <button id="addToCart" data-id="${product.Id}">Add To Cart</button>
             <div id="snackbar">1 item added to cart</div>
