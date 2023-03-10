@@ -6,6 +6,7 @@ import {
 } from "./utils.mjs";
 import { newsLetterTemplate, responseToSubmission } from "./NewsLetter.mjs";
 import { logProductCard } from "./QuickLook.mjs";
+import { visit } from "./modalVisit.js";
 
 loadHeaderFooter();
 numberItems("so-cart", ".numberCartItems");
@@ -17,6 +18,8 @@ document
   .addEventListener("click", responseToSubmission);
 
 logProductCard();
+
+visit();
 
 /* Display the MODAL FORM in the first visit */
 const modalFirstVisit = document.querySelector("#modalVisit");
